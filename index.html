@@ -290,8 +290,38 @@
   .footer-col p{font-size:0.88rem;color:var(--gray-soft);line-height:1.7;font-weight:400}
   .footer-bottom{max-width:1200px;margin:0 auto;padding-top:2rem;border-top:1px solid #2A2A2A;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;font-weight:500}
 
+  /* HERO VIDEO BG */
+  #page-home .hero{position:relative;overflow:hidden}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.18;pointer-events:none}
+  .hero-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,245,240,0.35) 0%,rgba(247,245,240,0.55) 60%,rgba(247,245,240,0.85) 100%);z-index:1;pointer-events:none}
+  #page-home .hero .container{position:relative;z-index:2}
+
+  /* INTRO IMAGE */
+  .intro-block{position:relative}
+  .intro-image{margin-top:5rem;max-width:1200px;margin-left:auto;margin-right:auto;width:100%;aspect-ratio:21/9;background:var(--paper);overflow:hidden;position:relative}
+  .intro-image img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.85)}
+  .intro-image .img-credit{position:absolute;bottom:8px;right:12px;font-size:0.62rem;color:rgba(255,255,255,0.75);letter-spacing:0.08em;text-transform:uppercase}
+
+  /* PILOTO VIDEO */
+  .piloto-video-wrap{aspect-ratio:16/10;width:100%;background:#000;position:relative;overflow:hidden}
+  .piloto-video-wrap video{width:100%;height:100%;object-fit:cover;display:block}
+  .piloto-video-poster{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase}
+
+  /* SECTION DIVIDER IMAGE */
+  .section-divider{width:100%;aspect-ratio:21/6;background:var(--paper);overflow:hidden;position:relative}
+  .section-divider img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(0.2) brightness(0.95)}
+  .section-divider::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,245,240,0.0) 0%,rgba(247,245,240,0.25) 100%);pointer-events:none}
+
+  /* FORM SUCCESS / ERROR */
+  #form-feedback.ok{color:var(--wapp);font-weight:600}
+  #form-feedback.err{color:var(--red);font-weight:600}
+  .btn-submit:disabled{opacity:0.6;cursor:wait}
+
   /* MOBILE */
   @media(max-width:900px){
+    .intro-image{margin-top:3rem;aspect-ratio:4/3}
+    .section-divider{aspect-ratio:16/9}
+    .hero-video{opacity:0.12}
     nav{padding:1rem 1.2rem}
     nav.scrolled{padding:0.8rem 1.2rem}
     .nav-right{gap:0.6rem}
@@ -370,6 +400,10 @@
 <!-- PAGE: HOME -->
 <div class="page active" id="page-home">
   <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/proyectos/casa-piloto-01-render.jpg">
+      <source src="assets/proyectos/casa-piloto-video.mp4" type="video/mp4"/>
+    </video>
+    <div class="hero-video-overlay"></div>
     <div class="container">
       <div class="eyebrow"><span class="dot"></span>Montevideo · Construcción y proyectos</div>
       <h1 class="hero-title">
@@ -397,6 +431,9 @@
         <p class="intro-text">Somos un equipo joven dedicado a llevar adelante <em>obras y proyectos</em> en Montevideo y alrededores. Acompañamos cada trabajo desde la primera idea hasta la entrega, con compromiso, transparencia y atención al detalle.</p>
         <p class="intro-sub">Nos mueve construir espacios durables, pensados con criterio y ejecutados con buenos materiales. Cada obra es una conversación entre quien habita y el lugar.</p>
       </div>
+    </div>
+    <div class="intro-image">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1800&q=78&auto=format&fit=crop" alt="Detalle arquitectónico" loading="lazy" onerror="this.parentNode.style.display='none'"/>
     </div>
   </section>
 
@@ -493,12 +530,22 @@
             <div class="data-item"><div class="data-item-label">Cliente</div><div class="data-item-value">Proyecto propio</div></div>
           </div>
         </div>
-        <div class="img-wrap proyecto-big-img" data-gallery="piloto" data-caption="Casa Piloto · Render principal">
-          <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Casa Piloto · render principal</div></div>
-          <img src="assets/proyectos/casa-piloto-01-render.jpg" alt="Casa Piloto render principal" loading="lazy" onerror="this.remove()"/>
+        <div class="piloto-video-wrap">
+          <div class="piloto-video-poster">Cargando recorrido…</div>
+          <video controls preload="metadata" poster="assets/proyectos/casa-piloto-01-render.jpg" playsinline>
+            <source src="assets/proyectos/casa-piloto-video.mp4" type="video/mp4"/>
+            Tu navegador no soporta video HTML5.
+          </video>
         </div>
       </div>
       <div class="proyecto-gallery">
+        <div class="gallery-item wide">
+          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Render principal">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Render principal</div></div>
+            <img src="assets/proyectos/casa-piloto-01-render.jpg" alt="Casa Piloto render principal" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Render principal</div>
+        </div>
         <div class="gallery-item wide">
           <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Vista exterior">
             <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Vista exterior</div></div>
@@ -690,6 +737,9 @@
           </ul>
         </div>
       </div>
+      <div class="section-divider" style="margin:1rem 0">
+        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1800&q=72&auto=format&fit=crop" alt="" loading="lazy" onerror="this.parentNode.style.display='none'"/>
+      </div>
       <div class="servicio-bloque">
         <div class="servicio-num">02</div>
         <div>
@@ -761,6 +811,9 @@
           <p class="paso-detalle">Si querés cotizar con otro constructor, la documentación está lista para que cualquiera la pueda leer.</p>
         </div>
       </div>
+      <div class="section-divider" style="margin:2rem 0">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1800&q=72&auto=format&fit=crop" alt="" loading="lazy" onerror="this.parentNode.style.display='none'"/>
+      </div>
       <div class="paso">
         <div class="paso-numero">04</div>
         <div class="paso-content">
@@ -825,18 +878,25 @@
         </div>
 
         <div>
-          <div class="form-row">
-            <div class="form-group"><label>Nombre</label><input type="text" id="f-nombre" autocomplete="name"/></div>
-            <div class="form-group"><label>Teléfono</label><input type="tel" id="f-tel" autocomplete="tel"/></div>
-          </div>
-          <div class="form-group"><label>Email</label><input type="email" id="f-email" autocomplete="email"/></div>
-          <div class="form-group"><label>Tipo de consulta</label><select id="f-tipo"><option value="">—</option><option>Obra nueva</option><option>Reforma</option><option>Ampliación</option><option>Dibujo técnico / Planos</option><option>Presupuestación</option><option>Otro</option></select></div>
-          <div class="form-group"><label>Mensaje</label><textarea id="f-msg" placeholder="Contanos un poco sobre el proyecto: qué tenés en mente, dónde, plazos aproximados..."></textarea></div>
-          <div class="form-actions">
-            <button class="btn-submit" onclick="enviarForm()">Enviar mensaje →</button>
-            <a class="btn-wapp" id="form-wapp"><svg><use href="#i-wapp"/></svg>Enviar por WhatsApp</a>
-            <div id="form-feedback"></div>
-          </div>
+          <form id="contact-form" onsubmit="return enviarForm(event)">
+            <input type="hidden" name="access_key" value="2a953157-c148-4b17-bd8a-d54d965296be"/>
+            <input type="hidden" name="from_name" value="KODO Sitio Web"/>
+            <input type="hidden" name="subject" value="Consulta desde el sitio web KODO"/>
+            <input type="hidden" name="redirect" value="false"/>
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
+            <div class="form-row">
+              <div class="form-group"><label>Nombre</label><input type="text" id="f-nombre" name="nombre" autocomplete="name" required/></div>
+              <div class="form-group"><label>Teléfono</label><input type="tel" id="f-tel" name="telefono" autocomplete="tel"/></div>
+            </div>
+            <div class="form-group"><label>Email</label><input type="email" id="f-email" name="email" autocomplete="email" required/></div>
+            <div class="form-group"><label>Tipo de consulta</label><select id="f-tipo" name="tipo"><option value="">—</option><option>Obra nueva</option><option>Reforma</option><option>Ampliación</option><option>Dibujo técnico / Planos</option><option>Presupuestación</option><option>Otro</option></select></div>
+            <div class="form-group"><label>Mensaje</label><textarea id="f-msg" name="mensaje" placeholder="Contanos un poco sobre el proyecto: qué tenés en mente, dónde, plazos aproximados..." required></textarea></div>
+            <div class="form-actions">
+              <button type="submit" class="btn-submit" id="btn-submit">Enviar mensaje →</button>
+              <a class="btn-wapp" id="form-wapp"><svg><use href="#i-wapp"/></svg>Enviar por WhatsApp</a>
+              <div id="form-feedback"></div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -926,39 +986,51 @@ function mailLink(subject, body){
   const b = body ? `${s ? '&' : '?'}body=${encodeURIComponent(body)}` : '';
   return `mailto:${KODO.email}${s}${b}`;
 }
+// Gmail web compose URL — abre Gmail directo en el navegador (siempre funciona, aunque no haya cliente de mail)
+function gmailLink(subject, body){
+  const params = new URLSearchParams({ view:'cm', fs:'1', to:KODO.email });
+  if(subject) params.set('su', subject);
+  if(body) params.set('body', body);
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
 
 function applyContacts(){
   const wapp = wappLink();
-  const mail = mailLink('Consulta desde el sitio web');
+  const gmail = gmailLink('Consulta desde el sitio web');
+  const mailtoFallback = mailLink('Consulta desde el sitio web');
   const setHref = (id, href) => { const el = document.getElementById(id); if(el) el.href = href; };
   const setText = (id, text) => { const el = document.getElementById(id); if(el) el.textContent = text; };
+  // Marcar links externos para abrir en pestaña nueva
+  const openNewTab = (id) => { const el = document.getElementById(id); if(el){ el.target='_blank'; el.rel='noopener noreferrer'; } };
 
   setHref('nav-ig', KODO.instagramUrl);
   setHref('nav-fb', KODO.facebookUrl);
   setHref('nav-ml', KODO.mercadolibreUrl);
   setHref('nav-wapp', wapp);
 
-  setHref('cta-wapp-hero', wapp);
-  setHref('cta-wapp-strip', wapp);
-  setHref('cta-mail-strip', mail);
+  setHref('cta-wapp-hero', wapp); openNewTab('cta-wapp-hero');
+  setHref('cta-wapp-strip', wapp); openNewTab('cta-wapp-strip');
+  // "Escribir un mail" → Gmail web (no mailto, así funciona aunque no haya cliente de mail)
+  setHref('cta-mail-strip', gmail); openNewTab('cta-mail-strip');
 
-  ['cta-wapp-p1','cta-wapp-p2','cta-wapp-p3','cta-wapp-p4'].forEach(id => setHref(id, wapp));
+  ['cta-wapp-p1','cta-wapp-p2','cta-wapp-p3','cta-wapp-p4'].forEach(id => { setHref(id, wapp); openNewTab(id); });
 
-  setHref('link-mail', mail);
+  // Links de contacto: el texto (mailto: para click rápido) y los botones grandes (gmail web)
+  setHref('link-mail', mailtoFallback);
   setHref('link-tel', `tel:+${KODO.whatsappNumber}`);
-  setHref('ch-wapp', wapp);
-  setHref('ch-mail', mail); setText('ch-mail-handle', KODO.email);
+  setHref('ch-wapp', wapp); openNewTab('ch-wapp');
+  setHref('ch-mail', gmail); openNewTab('ch-mail'); setText('ch-mail-handle', KODO.email);
   setHref('ch-ig', KODO.instagramUrl); setText('ch-ig-handle', KODO.instagramHandle);
   setHref('ch-fb', KODO.facebookUrl);  setText('ch-fb-handle', KODO.facebookHandle);
   setHref('ch-ml', KODO.mercadolibreUrl); setText('ch-ml-handle', KODO.mercadolibreHandle + ' — materiales y servicios');
 
   setHref('foot-ig', KODO.instagramUrl);
   setHref('foot-fb', KODO.facebookUrl);
-  setHref('foot-wapp', wapp);
-  setHref('foot-mail', mail);
+  setHref('foot-wapp', wapp); openNewTab('foot-wapp');
+  setHref('foot-mail', gmail); openNewTab('foot-mail');
   setHref('foot-ml', KODO.mercadolibreUrl);
-  setHref('foot-link-mail', mail);
-  setHref('foot-link-wapp', wapp);
+  setHref('foot-link-mail', gmail); openNewTab('foot-link-mail');
+  setHref('foot-link-wapp', wapp); openNewTab('foot-link-wapp');
   setHref('foot-link-ig', KODO.instagramUrl); setText('foot-ig-handle', KODO.instagramHandle);
   setHref('foot-link-fb', KODO.facebookUrl); setText('foot-fb-handle', KODO.facebookHandle);
   setHref('foot-link-ml', KODO.mercadolibreUrl);
@@ -998,10 +1070,16 @@ function initRouter(){
   const initialPath=location.hash.slice(1)||'/';
   navigateTo(initialPath);
   document.querySelectorAll('[data-link]').forEach(el=>{
+    const path = el.getAttribute('data-link');
+    // Le ponemos un href real para que el click derecho / Ctrl+Click / middle-click funcionen como link de verdad
+    if(el.tagName === 'A') el.setAttribute('href', '#' + path);
     el.addEventListener('click',e=>{
+      // Si el usuario quiere abrir en pestaña nueva, dejamos al browser hacer lo suyo
+      if(e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
-      navigateTo(el.getAttribute('data-link'));
+      navigateTo(path);
     });
+    // Click con rueda del mouse (auxclick) → pestaña nueva, ya lo maneja el browser solo
   });
   window.addEventListener('popstate',()=>{
     navigateTo(location.hash.slice(1)||'/');
@@ -1074,24 +1152,52 @@ function initLightbox(){
   });
 }
 
-function enviarForm(){
-  const n=document.getElementById('f-nombre').value.trim();
-  const t=document.getElementById('f-tel').value.trim();
-  const e=document.getElementById('f-email').value.trim();
-  const tipo=document.getElementById('f-tipo').value.trim();
-  const m=document.getElementById('f-msg').value.trim();
-  const fb=document.getElementById('form-feedback');
+async function enviarForm(ev){
+  if(ev) ev.preventDefault();
+  const form = document.getElementById('contact-form');
+  const fb = document.getElementById('form-feedback');
+  const btn = document.getElementById('btn-submit');
   fb.style.display='block';
+  fb.className='';
+
+  const n=document.getElementById('f-nombre').value.trim();
+  const e=document.getElementById('f-email').value.trim();
+  const m=document.getElementById('f-msg').value.trim();
   if(!n||!e||!m){
     fb.textContent='Completá al menos nombre, email y mensaje.';
-    fb.style.color='#B8352F';
-    return;
+    fb.classList.add('err');
+    return false;
   }
-  const subject = `Consulta — ${tipo || 'Sitio web'} · ${n}`;
-  const body = `Nombre: ${n}\nTeléfono: ${t}\nEmail: ${e}\nTipo: ${tipo}\n\n${m}`;
-  window.location.href = mailLink(subject, body);
-  fb.textContent='✓ Gracias. Abrimos tu cliente de mail con el mensaje. Si preferís, también podés escribirnos por WhatsApp.';
-  fb.style.color='#161616';
+
+  btn.disabled = true;
+  const originalText = btn.textContent;
+  btn.textContent = 'Enviando…';
+  fb.textContent = '';
+
+  try{
+    const formData = new FormData(form);
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    });
+    const data = await res.json();
+    if(data.success){
+      fb.textContent = '✓ ¡Mensaje enviado! Te respondemos a la brevedad.';
+      fb.classList.add('ok');
+      form.reset();
+      updateFormWappLink();
+    } else {
+      throw new Error(data.message || 'Error al enviar');
+    }
+  } catch(err){
+    fb.innerHTML = '✗ No pudimos enviar el mensaje. Probá de nuevo o escribinos por <a href="'+wappLink()+'" target="_blank" rel="noopener" style="color:var(--wapp);text-decoration:underline">WhatsApp</a>.';
+    fb.classList.add('err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
+  return false;
 }
 
 function updateFormWappLink(){
