@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KODO — Construcción & Proyectos</title>
+<meta name="description" content="KODO — Estudio de construcción y proyectos en Montevideo. Obra nueva, reformas, dibujo técnico y gestión integral."/>
+<meta property="og:title" content="KODO — Construcción & Proyectos"/>
+<meta property="og:description" content="Estudio de construcción y proyectos en Montevideo. Obra nueva, reformas y dibujo técnico."/>
+<meta property="og:image" content="assets/kodo-logo.png"/>
+<link rel="icon" type="image/png" href="assets/kodo-logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --red:#B8352F;
+    --red-soft:#D4544E;
+    --ink:#161616;
+    --ink-soft:#333;
+    --gray:#7A7A7A;
+    --gray-soft:#B0B0B0;
+    --line:#E4E1DB;
+    --line-soft:#F0EEE9;
+    --cream:#F7F5F0;
+    --paper:#EEEBE3;
+    --white:#FFFFFF;
+    --wapp:#1F8A4B;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Inter',-apple-system,system-ui,sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(247,245,240,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:1.3rem 3rem;transition:all .35s}
+  nav.scrolled{padding:0.9rem 3rem;background:rgba(247,245,240,0.96);border-bottom:1px solid var(--line)}
+  .nav-logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;color:var(--ink)}
+  .nav-logo img{height:38px;width:auto;display:block;transition:height .35s}
+  nav.scrolled .nav-logo img{height:32px}
+  .nav-right{display:flex;align-items:center;gap:1.6rem}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+  .nav-links a{color:var(--ink);text-decoration:none;font-size:0.73rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;transition:color .3s;position:relative;cursor:pointer;padding:4px 0}
+  .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--red);transition:width .35s ease}
+  .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+  .nav-links a.active{color:var(--red)}
+  .nav-social{display:flex;align-items:center;gap:0.9rem;padding-left:1.4rem;border-left:1px solid var(--line)}
+  .nav-social a{color:var(--ink);opacity:0.65;transition:opacity .25s, color .25s, transform .25s;display:inline-flex;align-items:center}
+  .nav-social a:hover{opacity:1;color:var(--red);transform:translateY(-1px)}
+  .nav-social svg{width:16px;height:16px;display:block}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+  .hamburger span{width:22px;height:1.5px;background:var(--ink);transition:.3s}
+
+  /* PAGES */
+  .page{display:none;min-height:100vh;animation:fadeIn .5s ease}
+  .page.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+  .container{max-width:1400px;margin:0 auto;padding:0 3rem}
+
+  /* HOME HERO */
+  #page-home .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:10rem 3rem 4rem;position:relative}
+  .eyebrow{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gray);margin-bottom:1.8rem;font-weight:500;display:flex;align-items:center;gap:10px}
+  .eyebrow .dot{display:inline-block;width:5px;height:5px;background:var(--red);border-radius:50%}
+  .hero-title{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,6.5vw,5.6rem);line-height:1.12;letter-spacing:-0.015em;max-width:1100px;color:var(--ink);padding-top:0.15em}
+  .hero-title em{font-style:italic;color:var(--red);font-weight:500}
+  .hero-title .break{display:block}
+  .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:4.5rem;flex-wrap:wrap;gap:2rem}
+  .hero-desc{font-family:var(--sans);font-size:1rem;color:var(--ink-soft);max-width:420px;line-height:1.65;font-weight:400}
+  .hero-meta{text-align:right;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);line-height:1.9;font-weight:500}
+  .hero-meta strong{color:var(--ink);font-weight:600}
+  .hero-cta-row{display:flex;gap:0.9rem;margin-top:2.2rem;flex-wrap:wrap}
+  .hero-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;border:1px solid transparent}
+  .hero-cta.primary{background:var(--ink);color:var(--cream)}
+  .hero-cta.primary:hover{background:var(--red)}
+  .hero-cta.ghost{border-color:var(--ink);color:var(--ink)}
+  .hero-cta.ghost:hover{background:var(--ink);color:var(--cream)}
+  .hero-cta svg{width:14px;height:14px}
+
+  /* INTRO BLOCK */
+  .intro-block{padding:6rem 3rem;background:var(--cream);border-top:1px solid var(--line)}
+  .intro-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:6rem;max-width:1200px;margin:0 auto;align-items:start}
+  .intro-label{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);padding-top:10px;border-top:2px solid var(--red);padding-right:2rem;font-weight:600}
+  .intro-text{font-family:var(--serif);font-size:1.55rem;line-height:1.48;font-weight:400;color:var(--ink);letter-spacing:-0.005em}
+  .intro-text em{font-style:italic;color:var(--red);font-weight:500}
+  .intro-sub{font-size:0.95rem;color:var(--ink-soft);line-height:1.7;margin-top:1.8rem;max-width:560px}
+
+  /* HOME SERVICIOS PREVIEW */
+  .home-servicios{padding:5rem 3rem 7rem;background:var(--paper);border-top:1px solid var(--line)}
+  .home-servicios-inner{max-width:1200px;margin:0 auto}
+  .home-servicios-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3.5rem;border-bottom:1px solid var(--line);padding-bottom:1.3rem;flex-wrap:wrap;gap:1rem}
+  .home-servicios-head h2{font-family:var(--serif);font-size:clamp(1.8rem,3.2vw,2.4rem);font-weight:500;letter-spacing:-0.01em}
+  .home-servicios-head h2 em{font-style:italic;color:var(--red);font-weight:500}
+  .home-servicios-link{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:3px;transition:all .3s;cursor:pointer;font-weight:500}
+  .home-servicios-link:hover{color:var(--red);border-color:var(--red)}
+  .home-servicios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+  .home-servicio{padding:2rem 0;border-top:1px solid var(--line)}
+  .home-servicio .num{font-family:var(--serif);font-size:1.6rem;font-style:italic;color:var(--red);margin-bottom:0.6rem;display:block;font-weight:500}
+  .home-servicio h3{font-family:var(--serif);font-size:1.3rem;font-weight:500;margin-bottom:0.7rem;letter-spacing:-0.005em}
+  .home-servicio p{font-size:0.92rem;color:var(--ink-soft);line-height:1.6}
+
+  /* CTA STRIP */
+  .cta-strip{background:var(--ink);color:var(--cream);padding:5rem 3rem}
+  .cta-strip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:4rem;align-items:center}
+  .cta-strip h2{font-family:var(--serif);font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:500;line-height:1.15;letter-spacing:-0.01em}
+  .cta-strip h2 em{font-style:italic;color:var(--red-soft);font-weight:500}
+  .cta-strip-actions{display:flex;flex-direction:column;gap:0.8rem}
+  .cta-pill{display:inline-flex;align-items:center;justify-content:space-between;padding:14px 20px;background:transparent;border:1px solid #2D2D2D;color:var(--cream);text-decoration:none;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;transition:all .3s}
+  .cta-pill:hover{border-color:var(--red-soft);color:var(--red-soft)}
+  .cta-pill.wapp:hover{border-color:#3FB46B;color:#5BCB87}
+  .cta-pill svg{width:16px;height:16px;flex-shrink:0}
+  .cta-pill .label{display:flex;align-items:center;gap:12px}
+  .cta-pill .arrow{opacity:0.6;transition:transform .25s, opacity .25s}
+  .cta-pill:hover .arrow{transform:translateX(3px);opacity:1}
+
+  /* PAGE HEAD */
+  .page-head{padding:11rem 3rem 4rem;border-bottom:1px solid var(--line)}
+  .page-head-inner{max-width:1200px;margin:0 auto}
+  .page-head-label{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:1.3rem;font-weight:600;display:flex;align-items:center;gap:10px}
+  .page-head-label::before{content:'';width:24px;height:1px;background:var(--red)}
+  .page-head h1{font-family:var(--serif);font-size:clamp(2.3rem,4.8vw,4rem);font-weight:500;line-height:1;letter-spacing:-0.02em;margin-bottom:1.8rem}
+  .page-head h1 em{font-style:italic;color:var(--red)}
+  .page-head-sub{font-size:1.05rem;line-height:1.65;font-weight:400;color:var(--ink-soft);max-width:580px}
+
+  /* PROYECTOS LIST */
+  .proyectos-list{padding:3rem 3rem 9rem;max-width:1200px;margin:0 auto}
+  .proyecto-row{display:grid;grid-template-columns:60px 1fr 1fr 40px;gap:3rem;padding:2.2rem 0;border-bottom:1px solid var(--line);cursor:pointer;align-items:center;transition:all .35s;text-decoration:none;color:inherit}
+  .proyecto-row:hover{padding-left:1.5rem;background:var(--line-soft)}
+  .proyecto-row:hover .proyecto-row-name{color:var(--red)}
+  .proyecto-row:hover .arrow-right{transform:translateX(6px);color:var(--red)}
+  .proyecto-num{font-size:0.72rem;color:var(--gray);letter-spacing:0.14em;font-weight:500}
+  .proyecto-row-name{font-family:var(--serif);font-size:1.55rem;font-weight:500;transition:color .3s;letter-spacing:-0.01em}
+  .proyecto-row-name em{font-style:italic;color:var(--red);font-weight:500}
+  .proyecto-row-tag{font-size:0.73rem;letter-spacing:0.1em;color:var(--gray);text-transform:uppercase;font-weight:500}
+  .arrow-right{font-size:1rem;color:var(--ink);text-align:right;transition:all .3s}
+  .row-soon{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);font-weight:600;margin-left:0.7rem;border:1px solid var(--red);padding:2px 8px;border-radius:2px}
+
+  /* PROYECTO DETAIL */
+  .proyecto-detail{padding:9rem 3rem 6rem}
+  .proyecto-back{display:inline-flex;align-items:center;gap:10px;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gray);text-decoration:none;margin-bottom:2.5rem;transition:color .3s;cursor:pointer;font-weight:500}
+  .proyecto-back:hover{color:var(--red)}
+  .proyecto-hero{max-width:1200px;margin:0 auto 4rem;display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
+  .proyecto-hero-info{padding-top:1rem}
+  .proyecto-hero h1{font-family:var(--serif);font-size:clamp(2rem,4.2vw,3.5rem);font-weight:500;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.8rem}
+  .proyecto-hero h1 .red{color:var(--red);font-style:italic}
+  .proyecto-hero-desc{font-size:1.05rem;line-height:1.65;color:var(--ink-soft);font-weight:400;margin-bottom:2.5rem}
+  .proyecto-data{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+  .data-item-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;font-weight:500}
+  .data-item-value{font-family:var(--serif);font-size:1.15rem;font-weight:500}
+
+  /* IMAGE WRAPPER + PLACEHOLDER + LIGHTBOX */
+  .img-wrap{position:relative;width:100%;background:var(--paper);overflow:hidden;cursor:zoom-in}
+  .img-wrap.no-zoom{cursor:default}
+  .img-wrap .img-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:var(--gray-soft);background:linear-gradient(135deg,#EEEBE3 0%,#E4E0D6 50%,#EEEBE3 100%);text-align:center;padding:1rem}
+  .img-wrap .ph-lines{display:flex;flex-direction:column;gap:3px;align-items:center}
+  .img-wrap .ph-line{width:50px;height:1px;background:var(--gray-soft)}
+  .img-wrap .ph-line:nth-child(2){width:35px}
+  .img-wrap .ph-line:nth-child(3){width:42px}
+  .img-wrap .ph-label{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gray-soft);margin-top:2px;font-weight:500}
+  .img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.8,.2,1);position:relative;z-index:1}
+  .img-wrap:hover img{transform:scale(1.03)}
+
+  .proyecto-big-img{aspect-ratio:4/5}
+  .proyecto-gallery{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
+  .proyecto-gallery .wide{grid-column:1/-1}
+  .gallery-item .img-wrap{aspect-ratio:4/3}
+  .gallery-item.wide .img-wrap{aspect-ratio:16/9}
+  .gallery-caption{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-top:0.6rem;font-weight:500}
+
+  /* PROYECTO EN DESARROLLO */
+  .proyecto-soon{max-width:900px;margin:0 auto;padding:3rem;background:var(--white);border:1px solid var(--line);text-align:center}
+  .proyecto-soon h3{font-family:var(--serif);font-size:1.6rem;font-weight:500;margin-bottom:0.8rem;letter-spacing:-0.005em}
+  .proyecto-soon h3 em{font-style:italic;color:var(--red);font-weight:500}
+  .proyecto-soon p{font-size:0.98rem;color:var(--ink-soft);line-height:1.65;max-width:520px;margin:0 auto 1.8rem}
+
+  .proyecto-cta{max-width:1200px;margin:5rem auto 0;padding:3rem;border:1px solid var(--line);background:var(--white);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+  .proyecto-cta-text h3{font-family:var(--serif);font-size:1.5rem;font-weight:500;letter-spacing:-0.01em;margin-bottom:0.3rem}
+  .proyecto-cta-text h3 em{font-style:italic;color:var(--red);font-weight:500}
+  .proyecto-cta-text p{font-size:0.92rem;color:var(--gray);max-width:500px}
+  .proyecto-cta-actions{display:flex;gap:0.7rem;flex-wrap:wrap}
+
+  /* SERVICIOS */
+  .servicios-section{padding:4rem 3rem 9rem;background:var(--cream)}
+  .servicios-wrap{max-width:1100px;margin:0 auto}
+  .servicio-bloque{display:grid;grid-template-columns:120px 1fr;gap:3rem;padding:3.5rem 0;border-bottom:1px solid var(--line);align-items:start}
+  .servicio-bloque:last-child{border-bottom:none}
+  .servicio-num{font-family:var(--serif);font-size:2.2rem;font-weight:500;color:var(--red);font-style:italic;line-height:1}
+  .servicio-bloque h3{font-family:var(--serif);font-size:1.7rem;font-weight:500;margin-bottom:1rem;letter-spacing:-0.01em}
+  .servicio-bloque p{font-size:0.98rem;color:var(--ink-soft);line-height:1.7;max-width:680px;margin-bottom:1rem}
+  .servicio-bloque ul{margin-top:1.2rem;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1.5rem;max-width:680px}
+  .servicio-bloque li{font-size:0.85rem;color:var(--ink-soft);letter-spacing:0.005em;position:relative;padding-left:18px;line-height:1.5}
+  .servicio-bloque li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--red);border-radius:50%}
+
+  /* PROCESO */
+  .proceso-section{padding:4rem 3rem 9rem;background:var(--paper)}
+  .proceso-wrap{max-width:1000px;margin:0 auto}
+  .paso{display:grid;grid-template-columns:90px 1fr;gap:2.5rem;padding:3rem 0;border-bottom:1px solid rgba(0,0,0,0.08);align-items:start}
+  .paso:last-child{border-bottom:none}
+  .paso-numero{font-family:var(--serif);font-size:2.3rem;font-weight:500;color:var(--red);font-style:italic;line-height:1}
+  .paso-content h3{font-family:var(--serif);font-size:1.5rem;font-weight:500;margin-bottom:0.9rem;letter-spacing:-0.01em}
+  .paso-content p{font-size:0.97rem;color:var(--ink-soft);line-height:1.7;max-width:640px;margin-bottom:0.7rem}
+  .paso-content .paso-detalle{font-size:0.86rem;color:var(--gray);line-height:1.6;max-width:640px;font-style:italic}
+
+  /* CONTACTO */
+  .contacto-section{padding:4rem 3rem 9rem}
+  .contacto-wrap{max-width:1100px;margin:0 auto}
+  .contacto-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start;margin-top:2rem}
+  .contact-group{margin-bottom:2.2rem}
+  .contact-group-label{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:0.5rem;font-weight:500}
+  .contact-group-value{font-family:var(--serif);font-size:1.35rem;font-weight:500}
+  .contact-group-value a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:all .3s}
+  .contact-group-value a:hover{border-color:var(--red);color:var(--red)}
+  .contacto-note{font-size:0.92rem;color:var(--ink-soft);line-height:1.6;margin-top:3rem;padding-top:1.8rem;border-top:1px solid var(--line);max-width:380px}
+
+  .channels-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-top:1.5rem}
+  .channel-card{display:flex;align-items:center;gap:14px;padding:18px 20px;border:1px solid var(--line);background:var(--white);text-decoration:none;color:var(--ink);transition:all .3s}
+  .channel-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .channel-card.wapp:hover{border-color:var(--wapp)}
+  .channel-card.ig:hover{border-color:#C13584}
+  .channel-card.fb:hover{border-color:#1877F2}
+  .channel-card.ml:hover{border-color:#FFE600;background:#FFFCEB}
+  .channel-card.mail:hover{border-color:var(--red)}
+  .channel-icon{width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--cream);border-radius:50%}
+  .channel-icon svg{width:16px;height:16px}
+  .channel-text{display:flex;flex-direction:column;line-height:1.25}
+  .channel-text .ch-label{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);font-weight:600;margin-bottom:2px}
+  .channel-text .ch-handle{font-size:0.92rem;font-weight:500;color:var(--ink)}
+
+  /* FORM */
+  .form-group{margin-bottom:1.8rem}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  label{display:block;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:0.5rem;font-weight:500}
+  input,textarea,select{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);padding:0.65rem 0;color:var(--ink);font-size:0.95rem;font-family:var(--sans);font-weight:400;outline:none;transition:border-color .3s}
+  input:focus,textarea:focus,select:focus{border-color:var(--red)}
+  textarea{resize:vertical;min-height:90px;line-height:1.5}
+  select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%237A7A7A' d='M5 6L0 0h10z'/></svg>");background-repeat:no-repeat;background-position:right 4px center}
+  .form-actions{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center;margin-top:1rem}
+  .btn-submit{background:var(--ink);color:var(--cream);border:none;padding:14px 32px;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;font-family:var(--sans);font-weight:600;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:12px}
+  .btn-submit:hover{background:var(--red);gap:18px}
+  .btn-wapp{background:var(--wapp);color:#fff;border:none;padding:14px 26px;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;font-family:var(--sans);font-weight:600;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+  .btn-wapp:hover{background:#176E3B}
+  .btn-wapp svg{width:14px;height:14px}
+  #form-feedback{font-size:0.82rem;color:var(--red);margin-top:1rem;display:none;font-weight:500;width:100%}
+
+  /* WHATSAPP FLOATING */
+  .wapp-float{position:fixed;bottom:24px;right:24px;z-index:200;display:flex;align-items:center;gap:10px;background:var(--wapp);color:#fff;padding:13px 18px 13px 14px;border-radius:999px;text-decoration:none;font-size:0.78rem;font-weight:600;letter-spacing:0.04em;box-shadow:0 8px 24px rgba(31,138,75,0.32),0 2px 6px rgba(0,0,0,0.08);transition:transform .3s, box-shadow .3s, background .3s;animation:wappIn .6s .8s ease both}
+  .wapp-float:hover{transform:translateY(-2px);background:#176E3B;box-shadow:0 12px 30px rgba(31,138,75,0.4)}
+  .wapp-float svg{width:20px;height:20px}
+  .wapp-float .lbl{white-space:nowrap}
+  @keyframes wappIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:600px){
+    .wapp-float .lbl{display:none}
+    .wapp-float{padding:14px;border-radius:50%}
+  }
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed;inset:0;background:rgba(15,15,15,0.94);z-index:300;display:none;align-items:center;justify-content:center;padding:3rem;cursor:zoom-out;animation:lbIn .25s ease}
+  .lightbox.open{display:flex}
+  @keyframes lbIn{from{opacity:0}to{opacity:1}}
+  .lightbox img{max-width:100%;max-height:100%;object-fit:contain;display:block;cursor:default;box-shadow:0 12px 50px rgba(0,0,0,0.5)}
+  .lb-close{position:absolute;top:1.5rem;right:1.8rem;width:40px;height:40px;border:1px solid rgba(255,255,255,0.3);background:transparent;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all .25s;border-radius:50%}
+  .lb-close:hover{background:rgba(255,255,255,0.1);border-color:#fff}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,0.3);background:transparent;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:all .25s;border-radius:50%}
+  .lb-nav:hover{background:rgba(255,255,255,0.1);border-color:#fff}
+  .lb-prev{left:1.8rem}
+  .lb-next{right:1.8rem}
+  .lb-caption{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.7);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:500}
+  @media(max-width:600px){
+    .lightbox{padding:1rem}
+    .lb-close{top:0.8rem;right:0.8rem}
+    .lb-prev{left:0.5rem}
+    .lb-next{right:0.5rem}
+  }
+
+  /* FOOTER */
+  footer{background:var(--ink);color:var(--cream);padding:5rem 3rem 2.5rem}
+  .footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3.5rem}
+  .footer-logo{font-family:var(--sans);font-size:1.05rem;font-weight:600;letter-spacing:0.32em;margin-bottom:1rem}
+  .footer-logo .dot{display:inline-block;width:5px;height:5px;background:var(--red);border-radius:50%;margin-left:6px;vertical-align:middle;transform:translateY(-2px)}
+  .footer-tag{font-size:0.92rem;color:var(--gray-soft);max-width:280px;line-height:1.6;font-weight:400;margin-bottom:1.6rem}
+  .footer-social{display:flex;gap:0.7rem}
+  .footer-social a{width:36px;height:36px;border:1px solid #2D2D2D;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--cream);transition:all .25s;text-decoration:none}
+  .footer-social a:hover{border-color:var(--red-soft);color:var(--red-soft);transform:translateY(-2px)}
+  .footer-social svg{width:14px;height:14px}
+  .footer-col h4{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:1.1rem;font-weight:600}
+  .footer-col a{display:flex;align-items:center;gap:8px;color:var(--cream);text-decoration:none;font-size:0.88rem;margin-bottom:0.55rem;transition:color .3s;cursor:pointer;font-weight:400}
+  .footer-col a:hover{color:var(--red-soft)}
+  .footer-col a svg{width:13px;height:13px;opacity:0.6}
+  .footer-col p{font-size:0.88rem;color:var(--gray-soft);line-height:1.7;font-weight:400}
+  .footer-bottom{max-width:1200px;margin:0 auto;padding-top:2rem;border-top:1px solid #2A2A2A;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;font-weight:500}
+
+  /* MOBILE */
+  @media(max-width:900px){
+    nav{padding:1rem 1.2rem}
+    nav.scrolled{padding:0.8rem 1.2rem}
+    .nav-right{gap:0.6rem}
+    .nav-social{display:none}
+    .nav-links{display:none;position:fixed;top:56px;left:0;right:0;background:var(--cream);flex-direction:column;padding:2rem;gap:1.5rem;border-top:1px solid var(--line)}
+    .nav-links.open{display:flex}
+    .hamburger{display:flex}
+    .container{padding:0 1.2rem}
+    #page-home .hero{padding:8rem 1.2rem 4rem}
+    .nav-logo img{height:30px}
+    .intro-block,.home-servicios,.servicios-section,.proceso-section,.contacto-section,.proyectos-list,.proyecto-detail,.cta-strip{padding-left:1.2rem;padding-right:1.2rem}
+    .intro-grid{grid-template-columns:1fr;gap:2rem}
+    .intro-text{font-size:1.25rem}
+    .home-servicios-grid{grid-template-columns:1fr;gap:0}
+    .servicio-bloque{grid-template-columns:60px 1fr;gap:1.5rem;padding:2.8rem 0}
+    .servicio-num{font-size:1.7rem}
+    .servicio-bloque ul{grid-template-columns:1fr}
+    .proyecto-row{grid-template-columns:35px 1fr 30px;gap:1rem}
+    .proyecto-row-tag{display:none}
+    .proyecto-hero{grid-template-columns:1fr;gap:2.5rem}
+    .proyecto-gallery{grid-template-columns:1fr}
+    .contacto-grid{grid-template-columns:1fr;gap:3rem}
+    .channels-grid{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr;gap:0}
+    .hero-foot{flex-direction:column;align-items:flex-start;gap:2rem;margin-top:3rem}
+    .hero-meta{text-align:left}
+    .paso{grid-template-columns:55px 1fr;gap:1.5rem;padding:2.3rem 0}
+    .paso-numero{font-size:1.7rem}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+    .page-head{padding:8.5rem 1.2rem 3rem}
+    .cta-strip-inner{grid-template-columns:1fr;gap:2rem}
+    .proyecto-cta{padding:2rem;flex-direction:column;align-items:flex-start}
+  }
+  @media(max-width:600px){
+    .footer-grid{grid-template-columns:1fr}
+    .footer-bottom{flex-direction:column;text-align:center}
+    .home-servicios-head{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG SPRITES -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-ig" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M7 2.5h10A4.5 4.5 0 0 1 21.5 7v10a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 17V7A4.5 4.5 0 0 1 7 2.5Z"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21.95v-8.06h2.71l.41-3.15H13.5V8.72c0-.91.25-1.53 1.56-1.53h1.66V4.38c-.29-.04-1.27-.12-2.41-.12-2.39 0-4.02 1.46-4.02 4.13v2.3H7.57v3.15h2.72v8.11Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M3.5 5.5h17v13h-17z"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="m3.7 6 8.3 7 8.3-7"/></symbol>
+  <symbol id="i-wapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.15-1.78-.88-2.05-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.95 1.18-.18.2-.35.22-.65.07-1.78-.89-2.95-1.59-4.13-3.6-.31-.54.31-.5.89-1.66.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.49 1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5 1.9.82 2.65.89 3.6.75.58-.09 1.78-.73 2.03-1.43s.25-1.3.18-1.43c-.07-.13-.27-.2-.57-.35Zm-5.49 7.6h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.21-3.77.99 1-3.67-.24-.38a9.94 9.94 0 0 1-1.52-5.3c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.05c0 5.49-4.47 9.95-9.96 9.95Zm8.48-18.43A11.84 11.84 0 0 0 12.02 0c-6.55 0-11.89 5.33-11.9 11.88 0 2.09.55 4.13 1.59 5.94L0 24l6.34-1.66a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.9-11.88 0-3.18-1.23-6.16-3.48-8.41Z"/></symbol>
+  <symbol id="i-ml" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.5 10 10l2 3 2-4 2.5 5.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+</svg>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" data-link="/" aria-label="KODO inicio"><img src="assets/kodo-logo.png" alt="KODO"/></a>
+  <div class="nav-right">
+    <ul class="nav-links" id="navLinks">
+      <li><a data-link="/">Inicio</a></li>
+      <li><a data-link="/proyectos">Proyectos</a></li>
+      <li><a data-link="/servicios">Servicios</a></li>
+      <li><a data-link="/proceso">Proceso</a></li>
+      <li><a data-link="/contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-social" aria-label="Redes sociales">
+      <a id="nav-ig" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+      <a id="nav-fb" href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+      <a id="nav-ml" href="#" target="_blank" rel="noopener" aria-label="Mercado Libre"><svg><use href="#i-ml"/></svg></a>
+      <a id="nav-wapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-wapp"/></svg></a>
+    </div>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE: HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow"><span class="dot"></span>Montevideo · Construcción y proyectos</div>
+      <h1 class="hero-title">
+        Construir <em>con oficio,</em><span class="break"></span>
+        proyectar con claridad.
+      </h1>
+      <div class="hero-cta-row">
+        <a class="hero-cta primary" id="cta-wapp-hero"><svg><use href="#i-wapp"/></svg>Escribinos por WhatsApp</a>
+        <a class="hero-cta ghost" data-link="/proyectos">Ver proyectos<svg><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="hero-foot">
+        <p class="hero-desc">KODO es un estudio de construcción y proyectos. Trabajamos en reformas, obra nueva y dibujo técnico, con foco en la ejecución bien hecha y el cuidado por el detalle.</p>
+        <div class="hero-meta">
+          <div><strong>MVD / UY</strong></div>
+          <div>Estudio &amp; Obra</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro-block">
+    <div class="intro-grid">
+      <div class="intro-label">— Sobre<br>el estudio</div>
+      <div>
+        <p class="intro-text">Somos un equipo joven dedicado a llevar adelante <em>obras y proyectos</em> en Montevideo y alrededores. Acompañamos cada trabajo desde la primera idea hasta la entrega, con compromiso, transparencia y atención al detalle.</p>
+        <p class="intro-sub">Nos mueve construir espacios durables, pensados con criterio y ejecutados con buenos materiales. Cada obra es una conversación entre quien habita y el lugar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-servicios">
+    <div class="home-servicios-inner">
+      <div class="home-servicios-head">
+        <h2>Lo que <em>hacemos</em></h2>
+        <a class="home-servicios-link" data-link="/servicios">Ver todos los servicios →</a>
+      </div>
+      <div class="home-servicios-grid">
+        <div class="home-servicio">
+          <span class="num">01</span>
+          <h3>Construcción y reformas</h3>
+          <p>Obra nueva, ampliaciones, reformas integrales y barbacoas. Coordinamos los rubros para que la obra avance sin sobresaltos.</p>
+        </div>
+        <div class="home-servicio">
+          <span class="num">02</span>
+          <h3>Dibujo técnico y proyecto</h3>
+          <p>Documentación completa para llevar la idea a la obra: plantas, cortes, detalles, planillas y memorias. BIM y CAD.</p>
+        </div>
+        <div class="home-servicio">
+          <span class="num">03</span>
+          <h3>Presupuestación y gestión</h3>
+          <p>Cómputos métricos, presupuestos por rubro y coordinación de obra con seguimiento y certificación periódica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div class="cta-strip-inner">
+      <h2>¿Estás pensando una obra <em>o un proyecto?</em><br>Escribinos. Respondemos personalmente.</h2>
+      <div class="cta-strip-actions">
+        <a class="cta-pill wapp" id="cta-wapp-strip"><span class="label"><svg><use href="#i-wapp"/></svg>WhatsApp directo</span><span class="arrow">→</span></a>
+        <a class="cta-pill" id="cta-mail-strip"><span class="label"><svg><use href="#i-mail"/></svg>Escribir un mail</span><span class="arrow">→</span></a>
+        <a class="cta-pill" data-link="/contacto"><span class="label">Formulario de contacto</span><span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE: PROYECTOS LIST -->
+<div class="page" id="page-proyectos">
+  <div class="page-head">
+    <div class="page-head-inner">
+      <div class="page-head-label">Archivo</div>
+      <h1>Proyectos <em>seleccionados</em></h1>
+      <p class="page-head-sub">Una colección de trabajos realizados y propuestas en desarrollo. Cada proyecto responde a su contexto, a su programa y a las personas que lo habitan.</p>
+    </div>
+  </div>
+
+  <div class="proyectos-list">
+    <a class="proyecto-row" data-link="/proyectos/casa-piloto">
+      <div class="proyecto-num">01</div>
+      <div class="proyecto-row-name">Casa <em>Piloto</em></div>
+      <div class="proyecto-row-tag">Proyecto propio · 2025</div>
+      <div class="arrow-right">→</div>
+    </a>
+    <a class="proyecto-row" data-link="/proyectos/casa-costanera">
+      <div class="proyecto-num">02</div>
+      <div class="proyecto-row-name">Casa <em>Costanera</em></div>
+      <div class="proyecto-row-tag">Ampliación y reforma · 2025</div>
+      <div class="arrow-right">→</div>
+    </a>
+    <a class="proyecto-row" data-link="/proyectos/casa-juan">
+      <div class="proyecto-num">03</div>
+      <div class="proyecto-row-name">Casa <em>Juan</em><span class="row-soon">En obra</span></div>
+      <div class="proyecto-row-tag">Obra nueva · 2026</div>
+      <div class="arrow-right">→</div>
+    </a>
+    <a class="proyecto-row" data-link="/proyectos/casa-r">
+      <div class="proyecto-num">04</div>
+      <div class="proyecto-row-name">Casa <em>R</em><span class="row-soon">En desarrollo</span></div>
+      <div class="proyecto-row-tag">Reforma interior · 2026</div>
+      <div class="arrow-right">→</div>
+    </a>
+  </div>
+</div>
+
+<!-- PAGE: CASA PILOTO -->
+<div class="page" id="page-casa-piloto">
+  <div class="proyecto-detail">
+    <div class="container">
+      <a class="proyecto-back" data-link="/proyectos">← Volver a proyectos</a>
+      <div class="proyecto-hero">
+        <div class="proyecto-hero-info">
+          <h1>Casa <span class="red">Piloto</span></h1>
+          <p class="proyecto-hero-desc">Proyecto propio del estudio. Un ejercicio sobre vivienda compacta donde investigamos sistemas constructivos mixtos, economía de materiales y flexibilidad de uso. Un prototipo pensado para ser replicable y eficiente.</p>
+          <div class="proyecto-data">
+            <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2025</div></div>
+            <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">Proyecto</div></div>
+            <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Vivienda unifamiliar</div></div>
+            <div class="data-item"><div class="data-item-label">Cliente</div><div class="data-item-value">Proyecto propio</div></div>
+          </div>
+        </div>
+        <div class="img-wrap proyecto-big-img" data-gallery="piloto" data-caption="Casa Piloto · Render principal">
+          <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Casa Piloto · render principal</div></div>
+          <img src="assets/proyectos/casa-piloto-01-render.jpg" alt="Casa Piloto render principal" loading="lazy" onerror="this.remove()"/>
+        </div>
+      </div>
+      <div class="proyecto-gallery">
+        <div class="gallery-item wide">
+          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Vista exterior">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Vista exterior</div></div>
+            <img src="assets/proyectos/casa-piloto-02-render.jpg" alt="Casa Piloto vista exterior" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Vista exterior</div>
+        </div>
+        <div class="gallery-item">
+          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Render lateral">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Render lateral</div></div>
+            <img src="assets/proyectos/casa-piloto-03-render.jpg" alt="Casa Piloto render lateral" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Render lateral</div>
+        </div>
+        <div class="gallery-item">
+          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Volumetría">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Volumetría</div></div>
+            <img src="assets/proyectos/casa-piloto-04-render.jpg" alt="Casa Piloto volumetría" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Volumetría</div>
+        </div>
+        <div class="gallery-item wide">
+          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Render contextual">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Render contextual</div></div>
+            <img src="assets/proyectos/casa-piloto-05-render.jpg" alt="Casa Piloto render contextual" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Render contextual</div>
+        </div>
+      </div>
+      <div class="proyecto-cta">
+        <div class="proyecto-cta-text">
+          <h3>¿Te interesa un proyecto <em>parecido?</em></h3>
+          <p>Escribinos por el canal que prefieras. Coordinamos una visita o llamada sin compromiso.</p>
+        </div>
+        <div class="proyecto-cta-actions">
+          <a class="btn-wapp" id="cta-wapp-p1"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
+          <a class="hero-cta ghost" data-link="/contacto">Formulario</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: CASA COSTANERA -->
+<div class="page" id="page-casa-costanera">
+  <div class="proyecto-detail">
+    <div class="container">
+      <a class="proyecto-back" data-link="/proyectos">← Volver a proyectos</a>
+      <div class="proyecto-hero">
+        <div class="proyecto-hero-info">
+          <h1>Casa <span class="red">Costanera</span></h1>
+          <p class="proyecto-hero-desc">Ampliación y reforma de vivienda unifamiliar frente a la rambla. El proyecto reorganiza el programa doméstico buscando aprovechar las vistas al agua, incorpora una barbacoa nueva y trabaja con sistemas constructivos mixtos: mampostería tradicional en planta baja y steel framing en los volúmenes agregados.</p>
+          <div class="proyecto-data">
+            <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2025</div></div>
+            <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">Propuesta</div></div>
+            <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Ampliación y reforma</div></div>
+            <div class="data-item"><div class="data-item-label">Ubicación</div><div class="data-item-value">Ciudad de la Costa</div></div>
+          </div>
+        </div>
+        <div class="img-wrap proyecto-big-img" data-gallery="costanera" data-caption="Casa Costanera · Render principal">
+          <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Casa Costanera · render principal</div></div>
+          <img src="assets/proyectos/casa-costanera-01-render.jpg" alt="Casa Costanera render principal" loading="lazy" onerror="this.remove()"/>
+        </div>
+      </div>
+      <div class="proyecto-gallery">
+        <div class="gallery-item wide">
+          <div class="img-wrap" data-gallery="costanera" data-caption="Casa Costanera · Vista frontal">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Vista frontal</div></div>
+            <img src="assets/proyectos/casa-costanera-02-render.jpg" alt="Casa Costanera vista frontal" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Vista frontal</div>
+        </div>
+        <div class="gallery-item">
+          <div class="img-wrap" data-gallery="costanera" data-caption="Casa Costanera · Vista lateral">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Vista lateral</div></div>
+            <img src="assets/proyectos/casa-costanera-03-render.jpg" alt="Casa Costanera vista lateral" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Vista lateral</div>
+        </div>
+        <div class="gallery-item">
+          <div class="img-wrap" data-gallery="costanera" data-caption="Casa Costanera · Detalle volumétrico">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Detalle volumétrico</div></div>
+            <img src="assets/proyectos/casa-costanera-04-render.jpg" alt="Casa Costanera detalle" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Detalle volumétrico</div>
+        </div>
+        <div class="gallery-item wide">
+          <div class="img-wrap" data-gallery="costanera" data-caption="Casa Costanera · Vista al agua">
+            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Vista al agua</div></div>
+            <img src="assets/proyectos/casa-costanera-05-render.jpg" alt="Casa Costanera vista al agua" loading="lazy" onerror="this.remove()"/>
+          </div>
+          <div class="gallery-caption">— Vista al agua</div>
+        </div>
+      </div>
+      <div class="proyecto-cta">
+        <div class="proyecto-cta-text">
+          <h3>¿Pensás algo <em>similar?</em></h3>
+          <p>Coordinamos una visita al lugar y te armamos una propuesta a medida.</p>
+        </div>
+        <div class="proyecto-cta-actions">
+          <a class="btn-wapp" id="cta-wapp-p2"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
+          <a class="hero-cta ghost" data-link="/contacto">Formulario</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: CASA JUAN -->
+<div class="page" id="page-casa-juan">
+  <div class="proyecto-detail">
+    <div class="container">
+      <a class="proyecto-back" data-link="/proyectos">← Volver a proyectos</a>
+      <div style="max-width:900px;margin:0 auto">
+        <h1 style="font-family:var(--serif);font-size:clamp(2rem,4.2vw,3.5rem);font-weight:500;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.8rem">Casa <span style="color:var(--red);font-style:italic">Juan</span></h1>
+        <p style="font-size:1.05rem;line-height:1.65;color:var(--ink-soft);margin-bottom:2.5rem;max-width:680px">Construcción de una nueva barbacoa de 35 m² sobre un predio familiar. Sistema constructivo tradicional con platea de hormigón armado, muros de mampostería con aislación térmica incorporada, cubierta de madera con machimbrado visto y chapa sinusoidal exterior. Proyecto completo con cómputos, sanitaria y eléctrica.</p>
+        <div class="proyecto-data" style="max-width:680px;margin-bottom:3rem">
+          <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2026</div></div>
+          <div class="data-item"><div class="data-item-label">Superficie</div><div class="data-item-value">35 m²</div></div>
+          <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Obra nueva · Barbacoa</div></div>
+          <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">En obra</div></div>
+        </div>
+
+        <div class="proyecto-soon">
+          <h3>Proyecto <em>en obra</em></h3>
+          <p>Las imágenes finales se publican cuando la obra avance. Mientras tanto, si querés ver el proyecto técnico o conversar sobre algo similar, escribinos.</p>
+          <div class="proyecto-cta-actions" style="justify-content:center;display:flex">
+            <a class="btn-wapp" id="cta-wapp-p3"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
+            <a class="hero-cta ghost" data-link="/contacto">Formulario</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: CASA R -->
+<div class="page" id="page-casa-r">
+  <div class="proyecto-detail">
+    <div class="container">
+      <a class="proyecto-back" data-link="/proyectos">← Volver a proyectos</a>
+      <div style="max-width:900px;margin:0 auto">
+        <h1 style="font-family:var(--serif);font-size:clamp(2rem,4.2vw,3.5rem);font-weight:500;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.8rem">Casa <span style="color:var(--red);font-style:italic">R</span></h1>
+        <p style="font-size:1.05rem;line-height:1.65;color:var(--ink-soft);margin-bottom:2.5rem;max-width:680px">Reforma de baño y cocina en una vivienda existente. El encargo pedía reorganizar los espacios de uso diario, mejorar la llegada de luz natural y actualizar terminaciones, manteniendo la estructura original de la casa.</p>
+        <div class="proyecto-data" style="max-width:680px;margin-bottom:3rem">
+          <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2026</div></div>
+          <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">En desarrollo</div></div>
+          <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Reforma interior</div></div>
+          <div class="data-item"><div class="data-item-label">Cliente</div><div class="data-item-value">Privado</div></div>
+        </div>
+
+        <div class="proyecto-soon">
+          <h3>Proyecto <em>en desarrollo</em></h3>
+          <p>Estamos en la etapa de propuesta. Cuando los renders y planos estén listos los publicamos acá. Si querés ver más sobre cómo trabajamos reformas, escribinos.</p>
+          <div class="proyecto-cta-actions" style="justify-content:center;display:flex">
+            <a class="btn-wapp" id="cta-wapp-p4"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
+            <a class="hero-cta ghost" data-link="/contacto">Formulario</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: SERVICIOS -->
+<div class="page" id="page-servicios">
+  <div class="page-head">
+    <div class="page-head-inner">
+      <div class="page-head-label">Qué hacemos</div>
+      <h1>Construcción, dibujo <em>y gestión de obra.</em></h1>
+      <p class="page-head-sub">Acompañamos cada proyecto desde la primera conversación hasta la entrega. Trabajamos con compromiso y transparencia en cada etapa.</p>
+    </div>
+  </div>
+  <div class="servicios-section">
+    <div class="servicios-wrap">
+      <div class="servicio-bloque">
+        <div class="servicio-num">01</div>
+        <div>
+          <h3>Construcción y reformas</h3>
+          <p>Ejecutamos obras de reforma, ampliación y construcción nueva en viviendas y locales. Coordinamos los distintos rubros — estructura, sanitaria, eléctrica, aberturas y terminaciones — para que el proyecto salga adelante sin sobresaltos.</p>
+          <p>Trabajamos con sistemas constructivos tradicionales y mixtos según lo que mejor sirva al proyecto: mampostería, hormigón armado, steel framing, cubiertas livianas. La obra se planifica por etapas con avance certificable.</p>
+          <ul>
+            <li>Obra nueva llave en mano</li>
+            <li>Reformas integrales</li>
+            <li>Ampliaciones y entrepisos</li>
+            <li>Barbacoas y anexos</li>
+            <li>Cubiertas y aislaciones</li>
+            <li>Aberturas y terminaciones</li>
+          </ul>
+        </div>
+      </div>
+      <div class="servicio-bloque">
+        <div class="servicio-num">02</div>
+        <div>
+          <h3>Dibujo técnico y proyecto de obra</h3>
+          <p>Desarrollamos documentación completa para llevar una idea a la obra: plantas, cortes, fachadas, detalles constructivos, planillas de aberturas, planillas de muros y memorias descriptivas. Trabajamos en BIM (Revit) y CAD según las necesidades de cada encargo.</p>
+          <p>La documentación está pensada para que cualquier constructor pueda leerla sin ambigüedades, y para que vos puedas pedir cotizaciones comparables a varios proveedores.</p>
+          <ul>
+            <li>Plantas, cortes y fachadas</li>
+            <li>Detalles constructivos</li>
+            <li>Planillas de aberturas</li>
+            <li>Planillas de muros</li>
+            <li>Renders y volumetrías 3D</li>
+            <li>Memorias descriptivas</li>
+          </ul>
+        </div>
+      </div>
+      <div class="servicio-bloque">
+        <div class="servicio-num">03</div>
+        <div>
+          <h3>Presupuestación y coordinación</h3>
+          <p>Armamos presupuestos detallados por rubro, con cómputo métrico y cotización en varios proveedores. Durante la obra coordinamos los equipos, hacemos seguimiento de avance y rendimos cuentas claramente. Sin zonas grises ni sorpresas a fin de mes.</p>
+          <p>Cada certificación incluye foto, cómputo y comparativo contra el presupuesto original. Vos sabés en todo momento dónde está parada la obra y cuánto falta.</p>
+          <ul>
+            <li>Cómputos métricos por rubro</li>
+            <li>Presupuestos comparativos</li>
+            <li>Cronograma de obra</li>
+            <li>Coordinación de subcontratos</li>
+            <li>Certificaciones periódicas</li>
+            <li>Registro fotográfico de avance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: PROCESO -->
+<div class="page" id="page-proceso">
+  <div class="page-head">
+    <div class="page-head-inner">
+      <div class="page-head-label">Cómo trabajamos</div>
+      <h1>Del primer café <em>a la obra terminada.</em></h1>
+      <p class="page-head-sub">Cinco etapas, una conversación continua. Así acompañamos cada proyecto, sin importar la escala.</p>
+    </div>
+  </div>
+  <div class="proceso-section">
+    <div class="proceso-wrap">
+      <div class="paso">
+        <div class="paso-numero">01</div>
+        <div class="paso-content">
+          <h3>Conversación inicial</h3>
+          <p>Nos juntamos sin compromiso para entender el proyecto, visitar el lugar si corresponde y conocer tus expectativas. De esta primera charla sale el rumbo de todo lo demás: programa, escala, presupuesto disponible y plazos.</p>
+          <p class="paso-detalle">Sin costo. Te llevamos un primer relevamiento mental del lugar y volvemos con una idea clara de cómo seguir.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-numero">02</div>
+        <div class="paso-content">
+          <h3>Propuesta y anteproyecto</h3>
+          <p>Desarrollamos las primeras ideas en planos y volúmenes cuando aporta. Iteramos hasta que el proyecto responde con precisión al programa y al presupuesto disponible. Si hay dos o tres caminos posibles, los mostramos y discutimos juntos cuál tiene más sentido.</p>
+          <p class="paso-detalle">Esta etapa termina cuando vos decís "sí, así".</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-numero">03</div>
+        <div class="paso-content">
+          <h3>Documentación y presupuesto</h3>
+          <p>Detallamos cada elemento constructivo: plantas técnicas, cortes, planillas de aberturas, muros y carpintería, detalles de unión. Hacemos el cómputo métrico completo y presentamos el presupuesto con desglose por rubro. Sin sorpresas más adelante.</p>
+          <p class="paso-detalle">Si querés cotizar con otro constructor, la documentación está lista para que cualquiera la pueda leer.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-numero">04</div>
+        <div class="paso-content">
+          <h3>Ejecución de obra</h3>
+          <p>La obra se desarrolla bajo nuestra coordinación. Certificaciones periódicas, comunicación directa por WhatsApp y registro fotográfico de cada avance. Estamos en obra, no solo detrás de un mail. Cualquier cambio sobre la marcha se conversa antes de ejecutar.</p>
+          <p class="paso-detalle">Visita semanal mínima. Avisamos antes de cualquier tarea ruidosa o invasiva.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-numero">05</div>
+        <div class="paso-content">
+          <h3>Entrega y acompañamiento</h3>
+          <p>Inspección final detallada, lista de observaciones menores resueltas, documentación de lo ejecutado y manual mínimo de mantenimiento. El proyecto termina cuando vos habitás el espacio sin pendientes, no cuando firmamos el acta.</p>
+          <p class="paso-detalle">Acompañamiento posterior: si surge algo en los primeros meses, atendemos sin vueltas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: CONTACTO -->
+<div class="page" id="page-contacto">
+  <div class="page-head">
+    <div class="page-head-inner">
+      <div class="page-head-label">Hablemos</div>
+      <h1>Cada proyecto empieza <em>con una conversación.</em></h1>
+      <p class="page-head-sub">Contanos qué tenés en mente. Respondemos a la brevedad y, si corresponde, agendamos una visita al lugar.</p>
+    </div>
+  </div>
+
+  <div class="contacto-section">
+    <div class="contacto-wrap">
+      <div class="contacto-grid">
+        <div>
+          <div class="contact-group">
+            <div class="contact-group-label">— Email</div>
+            <div class="contact-group-value"><a id="link-mail" href="mailto:contacto.kodo@gmail.com">contacto.kodo@gmail.com</a></div>
+          </div>
+          <div class="contact-group">
+            <div class="contact-group-label">— Teléfono / WhatsApp</div>
+            <div class="contact-group-value"><a id="link-tel" href="tel:+59894526583">+598 94 526 583</a></div>
+          </div>
+          <div class="contact-group">
+            <div class="contact-group-label">— Ubicación</div>
+            <div class="contact-group-value">Montevideo, Uruguay</div>
+          </div>
+          <div class="contact-group">
+            <div class="contact-group-label">— A cargo</div>
+            <div class="contact-group-value">Michel Costa</div>
+          </div>
+
+          <div class="contact-group-label" style="margin-top:2.5rem">— Canales directos</div>
+          <div class="channels-grid">
+            <a class="channel-card wapp" id="ch-wapp"><span class="channel-icon"><svg style="color:var(--wapp)"><use href="#i-wapp"/></svg></span><span class="channel-text"><span class="ch-label">WhatsApp</span><span class="ch-handle">+598 94 526 583</span></span></a>
+            <a class="channel-card mail" id="ch-mail"><span class="channel-icon"><svg style="color:var(--red)"><use href="#i-mail"/></svg></span><span class="channel-text"><span class="ch-label">Gmail</span><span class="ch-handle" id="ch-mail-handle">contacto.kodo@gmail.com</span></span></a>
+            <a class="channel-card ig" id="ch-ig" target="_blank" rel="noopener"><span class="channel-icon"><svg style="color:#C13584"><use href="#i-ig"/></svg></span><span class="channel-text"><span class="ch-label">Instagram</span><span class="ch-handle" id="ch-ig-handle">@kodo_uy</span></span></a>
+            <a class="channel-card fb" id="ch-fb" target="_blank" rel="noopener"><span class="channel-icon"><svg style="color:#1877F2"><use href="#i-fb"/></svg></span><span class="channel-text"><span class="ch-label">Facebook</span><span class="ch-handle" id="ch-fb-handle">KODO Uruguay</span></span></a>
+            <a class="channel-card ml" id="ch-ml" target="_blank" rel="noopener" style="grid-column:1/-1"><span class="channel-icon"><svg style="color:#2D3277"><use href="#i-ml"/></svg></span><span class="channel-text"><span class="ch-label">Mercado Libre</span><span class="ch-handle" id="ch-ml-handle">Tienda KODO — materiales y servicios</span></span></a>
+          </div>
+
+          <p class="contacto-note">También podés dejarnos tus datos en el formulario. Escribimos personalmente, sin respuestas automáticas. Horario: lunes a viernes 9:00–18:00.</p>
+        </div>
+
+        <div>
+          <div class="form-row">
+            <div class="form-group"><label>Nombre</label><input type="text" id="f-nombre" autocomplete="name"/></div>
+            <div class="form-group"><label>Teléfono</label><input type="tel" id="f-tel" autocomplete="tel"/></div>
+          </div>
+          <div class="form-group"><label>Email</label><input type="email" id="f-email" autocomplete="email"/></div>
+          <div class="form-group"><label>Tipo de consulta</label><select id="f-tipo"><option value="">—</option><option>Obra nueva</option><option>Reforma</option><option>Ampliación</option><option>Dibujo técnico / Planos</option><option>Presupuestación</option><option>Otro</option></select></div>
+          <div class="form-group"><label>Mensaje</label><textarea id="f-msg" placeholder="Contanos un poco sobre el proyecto: qué tenés en mente, dónde, plazos aproximados..."></textarea></div>
+          <div class="form-actions">
+            <button class="btn-submit" onclick="enviarForm()">Enviar mensaje →</button>
+            <a class="btn-wapp" id="form-wapp"><svg><use href="#i-wapp"/></svg>Enviar por WhatsApp</a>
+            <div id="form-feedback"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">KODO<span class="dot"></span></div>
+      <p class="footer-tag">Estudio de construcción y proyectos. Proyectamos desde la escucha, construimos con oficio.</p>
+      <div class="footer-social">
+        <a id="foot-ig" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+        <a id="foot-fb" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+        <a id="foot-wapp" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-wapp"/></svg></a>
+        <a id="foot-mail" aria-label="Email"><svg><use href="#i-mail"/></svg></a>
+        <a id="foot-ml" target="_blank" rel="noopener" aria-label="Mercado Libre"><svg><use href="#i-ml"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>— Navegación</h4>
+      <a data-link="/">Inicio</a>
+      <a data-link="/proyectos">Proyectos</a>
+      <a data-link="/servicios">Servicios</a>
+      <a data-link="/proceso">Proceso</a>
+      <a data-link="/contacto">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <h4>— Contacto</h4>
+      <a id="foot-link-mail"><svg><use href="#i-mail"/></svg>contacto.kodo@gmail.com</a>
+      <a id="foot-link-wapp"><svg><use href="#i-wapp"/></svg>+598 94 526 583</a>
+      <p style="margin-top:0.5rem">Montevideo, UY</p>
+    </div>
+    <div class="footer-col">
+      <h4>— Encontranos</h4>
+      <a id="foot-link-ig"><svg><use href="#i-ig"/></svg><span id="foot-ig-handle">@kodo_uy</span></a>
+      <a id="foot-link-fb"><svg><use href="#i-fb"/></svg><span id="foot-fb-handle">KODO Uruguay</span></a>
+      <a id="foot-link-ml"><svg><use href="#i-ml"/></svg>Mercado Libre</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 KODO · Todos los derechos reservados</div>
+    <div>Lun a Vie · 9:00–18:00 · MVD, UY</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING -->
+<a class="wapp-float" id="wapp-float" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <svg><use href="#i-wapp"/></svg>
+  <span class="lbl">WhatsApp</span>
+</a>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lb-close" aria-label="Cerrar">×</button>
+  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Anterior">‹</button>
+  <button class="lb-nav lb-next" id="lb-next" aria-label="Siguiente">›</button>
+  <img id="lb-img" alt=""/>
+  <div class="lb-caption" id="lb-caption"></div>
+</div>
+
+<script>
+/* ============================================================
+   CONTACTO CENTRAL — editá estos datos para conectar todas las
+   redes y plataformas a la vez. Todo el sitio se actualiza solo.
+============================================================ */
+const KODO = {
+  email: 'contacto.kodo@gmail.com',
+  telDisplay: '+598 94 526 583',
+  whatsappNumber: '59894526583',
+  whatsappMessage: 'Hola KODO, vi su sitio web y quería consultar por un proyecto.',
+  instagramUrl: 'https://www.instagram.com/kodo_uy/',
+  instagramHandle: '@kodo_uy',
+  facebookUrl: 'https://www.facebook.com/kodo.uy',
+  facebookHandle: 'KODO Uruguay',
+  mercadolibreUrl: 'https://listado.mercadolibre.com.uy/_CustId_KODO',
+  mercadolibreHandle: 'Tienda KODO'
+};
+
+function wappLink(extra){
+  const msg = encodeURIComponent(extra ? KODO.whatsappMessage + '\n\n' + extra : KODO.whatsappMessage);
+  return `https://wa.me/${KODO.whatsappNumber}?text=${msg}`;
+}
+function mailLink(subject, body){
+  const s = subject ? `?subject=${encodeURIComponent(subject)}` : '';
+  const b = body ? `${s ? '&' : '?'}body=${encodeURIComponent(body)}` : '';
+  return `mailto:${KODO.email}${s}${b}`;
+}
+
+function applyContacts(){
+  const wapp = wappLink();
+  const mail = mailLink('Consulta desde el sitio web');
+  const setHref = (id, href) => { const el = document.getElementById(id); if(el) el.href = href; };
+  const setText = (id, text) => { const el = document.getElementById(id); if(el) el.textContent = text; };
+
+  setHref('nav-ig', KODO.instagramUrl);
+  setHref('nav-fb', KODO.facebookUrl);
+  setHref('nav-ml', KODO.mercadolibreUrl);
+  setHref('nav-wapp', wapp);
+
+  setHref('cta-wapp-hero', wapp);
+  setHref('cta-wapp-strip', wapp);
+  setHref('cta-mail-strip', mail);
+
+  ['cta-wapp-p1','cta-wapp-p2','cta-wapp-p3','cta-wapp-p4'].forEach(id => setHref(id, wapp));
+
+  setHref('link-mail', mail);
+  setHref('link-tel', `tel:+${KODO.whatsappNumber}`);
+  setHref('ch-wapp', wapp);
+  setHref('ch-mail', mail); setText('ch-mail-handle', KODO.email);
+  setHref('ch-ig', KODO.instagramUrl); setText('ch-ig-handle', KODO.instagramHandle);
+  setHref('ch-fb', KODO.facebookUrl);  setText('ch-fb-handle', KODO.facebookHandle);
+  setHref('ch-ml', KODO.mercadolibreUrl); setText('ch-ml-handle', KODO.mercadolibreHandle + ' — materiales y servicios');
+
+  setHref('foot-ig', KODO.instagramUrl);
+  setHref('foot-fb', KODO.facebookUrl);
+  setHref('foot-wapp', wapp);
+  setHref('foot-mail', mail);
+  setHref('foot-ml', KODO.mercadolibreUrl);
+  setHref('foot-link-mail', mail);
+  setHref('foot-link-wapp', wapp);
+  setHref('foot-link-ig', KODO.instagramUrl); setText('foot-ig-handle', KODO.instagramHandle);
+  setHref('foot-link-fb', KODO.facebookUrl); setText('foot-fb-handle', KODO.facebookHandle);
+  setHref('foot-link-ml', KODO.mercadolibreUrl);
+
+  setHref('wapp-float', wapp);
+}
+
+/* ROUTER */
+const routes={
+  '/':'page-home',
+  '/proyectos':'page-proyectos',
+  '/proyectos/casa-piloto':'page-casa-piloto',
+  '/proyectos/casa-costanera':'page-casa-costanera',
+  '/proyectos/casa-juan':'page-casa-juan',
+  '/proyectos/casa-r':'page-casa-r',
+  '/servicios':'page-servicios',
+  '/proceso':'page-proceso',
+  '/contacto':'page-contacto'
+};
+
+function navigateTo(path){
+  const pageId=routes[path]||'page-home';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById(pageId);
+  if(pg)pg.classList.add('active');
+  if(location.hash.slice(1)!==path){
+    history.pushState({},'',`#${path}`);
+  }
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('data-link')===path);
+  });
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo(0,0);
+}
+
+function initRouter(){
+  const initialPath=location.hash.slice(1)||'/';
+  navigateTo(initialPath);
+  document.querySelectorAll('[data-link]').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.preventDefault();
+      navigateTo(el.getAttribute('data-link'));
+    });
+  });
+  window.addEventListener('popstate',()=>{
+    navigateTo(location.hash.slice(1)||'/');
+  });
+}
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+});
+
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+/* LIGHTBOX */
+const lightbox = {
+  el: null, img: null, caption: null,
+  current: [], index: 0,
+  open(galleryName, clickedSrc){
+    const wraps = Array.from(document.querySelectorAll(`[data-gallery="${galleryName}"]`));
+    this.current = wraps.map(w => ({
+      src: w.querySelector('img')?.src,
+      caption: w.dataset.caption || ''
+    })).filter(item => item.src);
+    if(!this.current.length) return;
+    this.index = Math.max(0, this.current.findIndex(item => item.src === clickedSrc));
+    this.show();
+    document.body.style.overflow = 'hidden';
+  },
+  show(){
+    const item = this.current[this.index];
+    this.img.src = item.src;
+    this.img.alt = item.caption;
+    this.caption.textContent = item.caption;
+    this.el.classList.add('open');
+    this.el.setAttribute('aria-hidden','false');
+  },
+  close(){
+    this.el.classList.remove('open');
+    this.el.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  },
+  next(){ this.index = (this.index + 1) % this.current.length; this.show(); },
+  prev(){ this.index = (this.index - 1 + this.current.length) % this.current.length; this.show(); }
+};
+
+function initLightbox(){
+  lightbox.el = document.getElementById('lightbox');
+  lightbox.img = document.getElementById('lb-img');
+  lightbox.caption = document.getElementById('lb-caption');
+
+  document.querySelectorAll('.img-wrap[data-gallery]').forEach(wrap => {
+    wrap.addEventListener('click', e => {
+      const img = wrap.querySelector('img');
+      if(!img || !img.parentNode) return;
+      lightbox.open(wrap.dataset.gallery, img.src);
+    });
+  });
+
+  document.getElementById('lb-close').addEventListener('click', e => { e.stopPropagation(); lightbox.close(); });
+  document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lightbox.prev(); });
+  document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lightbox.next(); });
+  lightbox.el.addEventListener('click', e => { if(e.target === lightbox.el) lightbox.close(); });
+  lightbox.img.addEventListener('click', e => e.stopPropagation());
+  document.addEventListener('keydown', e => {
+    if(!lightbox.el.classList.contains('open')) return;
+    if(e.key === 'Escape') lightbox.close();
+    else if(e.key === 'ArrowRight') lightbox.next();
+    else if(e.key === 'ArrowLeft') lightbox.prev();
+  });
+}
+
+function enviarForm(){
+  const n=document.getElementById('f-nombre').value.trim();
+  const t=document.getElementById('f-tel').value.trim();
+  const e=document.getElementById('f-email').value.trim();
+  const tipo=document.getElementById('f-tipo').value.trim();
+  const m=document.getElementById('f-msg').value.trim();
+  const fb=document.getElementById('form-feedback');
+  fb.style.display='block';
+  if(!n||!e||!m){
+    fb.textContent='Completá al menos nombre, email y mensaje.';
+    fb.style.color='#B8352F';
+    return;
+  }
+  const subject = `Consulta — ${tipo || 'Sitio web'} · ${n}`;
+  const body = `Nombre: ${n}\nTeléfono: ${t}\nEmail: ${e}\nTipo: ${tipo}\n\n${m}`;
+  window.location.href = mailLink(subject, body);
+  fb.textContent='✓ Gracias. Abrimos tu cliente de mail con el mensaje. Si preferís, también podés escribirnos por WhatsApp.';
+  fb.style.color='#161616';
+}
+
+function updateFormWappLink(){
+  const n=document.getElementById('f-nombre').value.trim();
+  const tipo=document.getElementById('f-tipo').value.trim();
+  const m=document.getElementById('f-msg').value.trim();
+  const parts=[];
+  if(n)parts.push(`Soy ${n}.`);
+  if(tipo)parts.push(`Consulta: ${tipo}.`);
+  if(m)parts.push(m);
+  const extra = parts.join(' ');
+  document.getElementById('form-wapp').href = wappLink(extra);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  applyContacts();
+  initRouter();
+  initLightbox();
+  ['f-nombre','f-tipo','f-msg'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('input',updateFormWappLink);
+    if(el)el.addEventListener('change',updateFormWappLink);
+  });
+  updateFormWappLink();
+});
+</script>
+</body>
+</html>
