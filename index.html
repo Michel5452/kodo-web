@@ -37,8 +37,8 @@
   nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(247,245,240,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:1.3rem 3rem;transition:all .35s}
   nav.scrolled{padding:0.9rem 3rem;background:rgba(247,245,240,0.96);border-bottom:1px solid var(--line)}
   .nav-logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;color:var(--ink)}
-  .nav-logo img{height:38px;width:auto;display:block;transition:height .35s}
-  nav.scrolled .nav-logo img{height:32px}
+  .nav-logo img{height:56px;width:auto;display:block;transition:height .35s}
+  nav.scrolled .nav-logo img{height:46px}
   .nav-right{display:flex;align-items:center;gap:1.6rem}
   .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
   .nav-links a{color:var(--ink);text-decoration:none;font-size:0.73rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;transition:color .3s;position:relative;cursor:pointer;padding:4px 0}
@@ -292,8 +292,8 @@
 
   /* HERO VIDEO BG */
   #page-home .hero{position:relative;overflow:hidden}
-  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.18;pointer-events:none}
-  .hero-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,245,240,0.35) 0%,rgba(247,245,240,0.55) 60%,rgba(247,245,240,0.85) 100%);z-index:1;pointer-events:none}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.42;pointer-events:none}
+  .hero-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,245,240,0.20) 0%,rgba(247,245,240,0.45) 65%,rgba(247,245,240,0.85) 100%);z-index:1;pointer-events:none}
   #page-home .hero .container{position:relative;z-index:2}
 
   /* INTRO IMAGE */
@@ -321,7 +321,9 @@
   @media(max-width:900px){
     .intro-image{margin-top:3rem;aspect-ratio:4/3}
     .section-divider{aspect-ratio:16/9}
-    .hero-video{opacity:0.12}
+    .hero-video{opacity:0.32}
+    .nav-logo img{height:42px}
+    nav.scrolled .nav-logo img{height:36px}
     nav{padding:1rem 1.2rem}
     nav.scrolled{padding:0.8rem 1.2rem}
     .nav-right{gap:0.6rem}
@@ -437,6 +439,10 @@
     </div>
   </section>
 
+  <section class="section-divider" style="aspect-ratio:21/7">
+    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1800&q=72&auto=format&fit=crop" alt="" loading="lazy" onerror="this.parentNode.style.display='none'"/>
+  </section>
+
   <section class="home-servicios">
     <div class="home-servicios-inner">
       <div class="home-servicios-head">
@@ -531,10 +537,9 @@
           </div>
         </div>
         <div class="piloto-video-wrap">
-          <div class="piloto-video-poster">Cargando recorrido…</div>
           <video controls preload="metadata" poster="assets/proyectos/casa-piloto-01-render.jpg" playsinline>
             <source src="assets/proyectos/casa-piloto-video.mp4" type="video/mp4"/>
-            Tu navegador no soporta video HTML5.
+            Tu navegador no soporta video HTML5. <a href="assets/proyectos/casa-piloto-video.mp4" download>Descargar video</a>.
           </video>
         </div>
       </div>
@@ -715,8 +720,8 @@
   <div class="page-head">
     <div class="page-head-inner">
       <div class="page-head-label">Qué hacemos</div>
-      <h1>Construcción, dibujo <em>y gestión de obra.</em></h1>
-      <p class="page-head-sub">Acompañamos cada proyecto desde la primera conversación hasta la entrega. Trabajamos con compromiso y transparencia en cada etapa.</p>
+      <h1>Diseño a medida, <em>construcción con oficio.</em></h1>
+      <p class="page-head-sub">Cada proyecto es único. Diseñamos y construimos pensando en quien va a habitar el espacio, con atención al detalle y materiales bien elegidos. Te acompañamos desde la primera idea hasta la entrega.</p>
     </div>
   </div>
   <div class="servicios-section">
@@ -725,10 +730,10 @@
         <div class="servicio-num">01</div>
         <div>
           <h3>Construcción y reformas</h3>
-          <p>Ejecutamos obras de reforma, ampliación y construcción nueva en viviendas y locales. Coordinamos los distintos rubros — estructura, sanitaria, eléctrica, aberturas y terminaciones — para que el proyecto salga adelante sin sobresaltos.</p>
-          <p>Trabajamos con sistemas constructivos tradicionales y mixtos según lo que mejor sirva al proyecto: mampostería, hormigón armado, steel framing, cubiertas livianas. La obra se planifica por etapas con avance certificable.</p>
+          <p>Ejecutamos obras de reforma, ampliación y construcción nueva en viviendas y locales. Cada obra se piensa a medida: las soluciones constructivas se eligen en función del proyecto, no al revés. Coordinamos los distintos rubros — estructura, sanitaria, eléctrica, aberturas y terminaciones — para que la obra avance sin sobresaltos.</p>
+          <p>Trabajamos con sistemas tradicionales y mixtos según lo que mejor sirva: mampostería, hormigón armado, steel framing, cubiertas livianas. La obra se planifica por etapas con avance certificable.</p>
           <ul>
-            <li>Obra nueva llave en mano</li>
+            <li>Obra nueva</li>
             <li>Reformas integrales</li>
             <li>Ampliaciones y entrepisos</li>
             <li>Barbacoas y anexos</li>
@@ -743,18 +748,21 @@
       <div class="servicio-bloque">
         <div class="servicio-num">02</div>
         <div>
-          <h3>Dibujo técnico y proyecto de obra</h3>
-          <p>Desarrollamos documentación completa para llevar una idea a la obra: plantas, cortes, fachadas, detalles constructivos, planillas de aberturas, planillas de muros y memorias descriptivas. Trabajamos en BIM (Revit) y CAD según las necesidades de cada encargo.</p>
-          <p>La documentación está pensada para que cualquier constructor pueda leerla sin ambigüedades, y para que vos puedas pedir cotizaciones comparables a varios proveedores.</p>
+          <h3>Proyecto ejecutivo</h3>
+          <p>Resolvemos el proyecto en detalle, listo para construir. Plantas técnicas, cortes, fachadas, planillas de aberturas y muros, detalles constructivos y memoria descriptiva. Una documentación clara y precisa, pensada para que la obra se ejecute sin ambigüedades.</p>
+          <p>Trabajamos en Revit (BIM) y AutoCAD. Si lo querés, lo entregamos con renders y volumetrías 3D para visualizar el proyecto antes de construir.</p>
           <ul>
             <li>Plantas, cortes y fachadas</li>
             <li>Detalles constructivos</li>
-            <li>Planillas de aberturas</li>
-            <li>Planillas de muros</li>
+            <li>Planillas de aberturas y muros</li>
+            <li>Memoria descriptiva</li>
             <li>Renders y volumetrías 3D</li>
-            <li>Memorias descriptivas</li>
+            <li>Documentación BIM (Revit)</li>
           </ul>
         </div>
+      </div>
+      <div class="section-divider" style="margin:1rem 0">
+        <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=1800&q=72&auto=format&fit=crop" alt="" loading="lazy" onerror="this.parentNode.style.display='none'"/>
       </div>
       <div class="servicio-bloque">
         <div class="servicio-num">03</div>
