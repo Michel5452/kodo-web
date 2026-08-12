@@ -11,7 +11,8 @@ Sitio estático del estudio KODO. HTML/CSS/JS puros, sin build, sin dependencias
 │   ├── kodo-logo.png       ← logo (favicon + nav + footer)
 │   └── proyectos/          ← imágenes de proyectos
 │       ├── casa-piloto-01-render.jpg ... 05
-│       └── casa-costanera-01-render.jpg ... 05
+│       ├── casa-costanera-01-render.jpg ... 05 (archivo anterior)
+│       └── casa-costanera/ ← ficha editorial, planta y registro previo
 ├── .nojekyll               ← desactiva Jekyll en GitHub Pages
 ├── .gitignore
 └── README.md
