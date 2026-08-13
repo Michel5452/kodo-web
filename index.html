@@ -223,6 +223,27 @@
   .project-before-grid img{filter:grayscale(1);transition:transform .9s cubic-bezier(.2,.8,.2,1),filter .35s ease}
   .project-before-grid .img-wrap:hover img{filter:grayscale(1);transform:scale(1.025)}
   .project-before-grid .gallery-caption{color:var(--gray)}
+  .pilot-cover{max-width:1400px;margin:0 auto;padding:0 3rem}
+  .pilot-cover .img-wrap{aspect-ratio:1/1}
+  .pilot-story{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  .pilot-story .img-wrap{aspect-ratio:1/1}
+  .pilot-video-section{display:grid;grid-template-columns:.75fr 1.25fr;gap:5rem;align-items:center}
+  .pilot-video-section h2{font-family:var(--serif);font-size:clamp(2.2rem,4vw,4rem);font-weight:400;line-height:1.05;margin-bottom:1.3rem}
+  .pilot-video-section p{font-size:.97rem;line-height:1.75;color:var(--ink-soft)}
+  .pilot-video-section .piloto-video-wrap{aspect-ratio:1/1}
+
+  /* PROYECTOS EN PROCESO */
+  .process-project{max-width:1200px;margin:0 auto;padding:10rem 3rem 8rem}
+  .process-project-head{display:grid;grid-template-columns:1.15fr .85fr;gap:5rem;align-items:end;padding-bottom:4rem;border-bottom:1px solid var(--line)}
+  .process-project-kicker{font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:1.2rem}
+  .process-project h1{font-family:var(--serif);font-size:clamp(3rem,6vw,6rem);font-weight:400;line-height:.88;letter-spacing:-.04em}
+  .process-project h1 em{display:block;color:var(--red);font-weight:500}
+  .process-project-lead{font-family:var(--serif);font-size:clamp(1.2rem,2vw,1.65rem);line-height:1.4}
+  .process-project-body{display:grid;grid-template-columns:.65fr 1.35fr;gap:5rem;padding:5rem 0}
+  .process-project-body p{font-size:1.03rem;line-height:1.8;color:var(--ink-soft);max-width:700px}
+  .process-project-body p+p{margin-top:1.3rem}
+  .process-status{display:flex;align-items:center;gap:.7rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);font-weight:600}
+  .process-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--red)}
 
   /* PROYECTO EN DESARROLLO */
   .proyecto-soon{max-width:900px;margin:0 auto;padding:3rem;background:var(--white);border:1px solid var(--line);text-align:center}
@@ -426,6 +447,11 @@
     .project-detail-feature{grid-template-columns:1fr;gap:2rem}
     .project-plan-head,.project-before-head{align-items:start;flex-direction:column;gap:1.3rem}
     .project-before-grid{grid-template-columns:1fr}
+    .pilot-cover{padding-left:1.2rem;padding-right:1.2rem}
+    .pilot-story{grid-template-columns:1fr}
+    .pilot-video-section{grid-template-columns:1fr;gap:2.5rem}
+    .process-project{padding:8rem 1.2rem 5rem}
+    .process-project-head,.process-project-body{grid-template-columns:1fr;gap:2.5rem}
   }
   @media(max-width:600px){
     .footer-grid{grid-template-columns:1fr}
@@ -472,7 +498,7 @@
 <!-- PAGE: HOME -->
 <div class="page active" id="page-home">
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/proyectos/casa-piloto-01-render.jpg">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/proyectos/casa-piloto/01-exterior-hyperreal.webp">
       <source src="assets/proyectos/casa-piloto-video.mp4" type="video/mp4"/>
     </video>
     <div class="hero-video-overlay"></div>
@@ -573,7 +599,7 @@
         </div>
       </a>
       <a class="proyecto-card" data-link="/proyectos/casa-piloto">
-        <div class="proyecto-card-media"><img src="assets/proyectos/casa-piloto-01-render.jpg" alt="Casa Piloto" loading="lazy"/></div>
+        <div class="proyecto-card-media"><img src="assets/proyectos/casa-piloto/01-exterior-hyperreal.webp" alt="Casa Piloto" loading="lazy"/></div>
         <div class="proyecto-card-head">
           <h2>Casa <em>Piloto</em></h2>
           <div class="proyecto-card-meta">02 · Proyecto propio<br>2025</div>
@@ -598,68 +624,97 @@
 
 <!-- PAGE: CASA PILOTO -->
 <div class="page" id="page-casa-piloto">
-  <div class="proyecto-detail">
-    <div class="container">
-      <a class="proyecto-back" data-link="/proyectos">← Volver a proyectos</a>
-      <div class="proyecto-hero">
-        <div class="proyecto-hero-info">
-          <h1>Casa <span class="red">Piloto</span></h1>
-          <p class="proyecto-hero-desc">Proyecto propio del estudio. Un ejercicio sobre vivienda compacta donde investigamos sistemas constructivos mixtos, economía de materiales y flexibilidad de uso. Un prototipo pensado para ser replicable y eficiente.</p>
-          <div class="proyecto-data">
-            <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2025</div></div>
-            <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">Proyecto</div></div>
-            <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Vivienda unifamiliar</div></div>
-            <div class="data-item"><div class="data-item-label">Cliente</div><div class="data-item-value">Proyecto propio</div></div>
+  <article class="project-editorial">
+    <header class="project-editorial-head">
+      <a class="proyecto-back" data-link="/proyectos">← Volver al archivo</a>
+      <div class="project-editorial-title">
+        <div>
+          <div class="project-editorial-kicker">Investigación residencial</div>
+          <h1>Casa <em>Piloto</em></h1>
+        </div>
+        <p class="project-editorial-lead">Una vivienda compacta que concentra la vida doméstica en un espacio continuo y se prolonga hacia el jardín.</p>
+      </div>
+      <div class="project-editorial-meta" role="group" aria-label="Ficha técnica del proyecto">
+        <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2025</div></div>
+        <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Vivienda unifamiliar</div></div>
+        <div class="data-item"><div class="data-item-label">Modalidad</div><div class="data-item-value">Proyecto propio</div></div>
+        <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">Proyecto</div></div>
+      </div>
+    </header>
+
+    <div class="pilot-cover">
+      <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Pabellón hacia el jardín">
+        <img src="assets/proyectos/casa-piloto/01-exterior-hyperreal.webp" alt="Exterior de Casa Piloto hacia el jardín" fetchpriority="high"/>
+      </div>
+      <div class="gallery-caption">Pabellón y jardín · Vista principal</div>
+    </div>
+
+    <div class="project-content">
+      <section class="project-section project-copy-grid" aria-labelledby="memoria-piloto">
+        <div class="project-section-label">Memoria descriptiva</div>
+        <div class="project-copy">
+          <h2 id="memoria-piloto">Un prototipo doméstico simple, abierto y adaptable.</h2>
+          <p>Casa Piloto es un ejercicio del estudio sobre vivienda compacta, economía de recursos y flexibilidad de uso. El programa se reúne en una planta clara: cocina, comedor y estar forman un único ambiente capaz de alojar distintas actividades sin perder continuidad.</p>
+          <p>Una fachada completamente vidriada conecta el interior con el deck y el jardín. La pérgola metálica construye una habitación exterior, filtra el sol y extiende la superficie habitable sin sumar un volumen cerrado. Madera clara, superficies blancas y elementos negros forman una paleta reducida y durable.</p>
+        </div>
+      </section>
+
+      <section class="project-section" aria-label="Interiores de Casa Piloto">
+        <div class="project-section-label">Espacio continuo</div>
+        <div class="pilot-story">
+          <figure class="gallery-item">
+            <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Cocina, comedor y jardín">
+              <img src="assets/proyectos/casa-piloto/02-interior-hyperreal.webp" alt="Cocina, comedor y relación con el jardín" loading="lazy"/>
+            </div>
+            <figcaption class="gallery-caption">Interior y jardín · 01</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Cocina y barbacoa">
+              <img src="assets/proyectos/casa-piloto/03-cocina-hyperreal.webp" alt="Vista de cocina, barbacoa y comedor" loading="lazy"/>
+            </div>
+            <figcaption class="gallery-caption">Cocina y barbacoa · 02</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Comedor y estar">
+              <img src="assets/proyectos/casa-piloto/04-comedor-hyperreal.webp" alt="Comedor y estar de Casa Piloto" loading="lazy"/>
+            </div>
+            <figcaption class="gallery-caption">Comedor y estar · 03</figcaption>
+          </figure>
+          <div class="project-detail-note">
+            <h3>Todo ocurre en una única habitación.</h3>
+            <p>La organización abierta evita circulaciones innecesarias. La isla articula cocina y comedor, mientras el estar ocupa el extremo más próximo al jardín y a la luz natural.</p>
           </div>
         </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="planta-piloto">
+        <div class="project-plan-head">
+          <div><div class="project-section-label">Dibujo</div><h2 id="planta-piloto">Planta general</h2></div>
+          <p>La planta reúne servicios, cocina y almacenamiento sobre un borde compacto. El espacio principal queda libre y se abre completamente hacia el deck y el jardín.</p>
+        </div>
+        <div class="project-plan" data-gallery="piloto-planta" data-caption="Casa Piloto · Planta general">
+          <img src="assets/proyectos/casa-piloto/05-planta.webp" alt="Planta general de Casa Piloto" loading="lazy"/>
+        </div>
+      </section>
+
+      <section class="project-section pilot-video-section">
+        <div>
+          <div class="project-section-label">Recorrido</div>
+          <h2>El proyecto en movimiento.</h2>
+          <p>El video permite leer la continuidad entre el ambiente interior, la galería y el jardín, y comprender el rol estructurador de la pérgola.</p>
+        </div>
         <div class="piloto-video-wrap">
-          <video controls preload="metadata" poster="assets/proyectos/casa-piloto-01-render.jpg" playsinline>
+          <video controls preload="metadata" poster="assets/proyectos/casa-piloto/01-exterior-hyperreal.webp" playsinline>
             <source src="assets/proyectos/casa-piloto-video.mp4" type="video/mp4"/>
             Tu navegador no soporta video HTML5. <a href="assets/proyectos/casa-piloto-video.mp4" download>Descargar video</a>.
           </video>
         </div>
-      </div>
-      <div class="proyecto-gallery">
-        <div class="gallery-item wide">
-          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Render principal">
-            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Render principal</div></div>
-            <img src="assets/proyectos/casa-piloto-01-render.jpg" alt="Casa Piloto render principal" loading="lazy" onerror="this.remove()"/>
-          </div>
-          <div class="gallery-caption">— Render principal</div>
-        </div>
-        <div class="gallery-item wide">
-          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Vista exterior">
-            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Vista exterior</div></div>
-            <img src="assets/proyectos/casa-piloto-02-render.jpg" alt="Casa Piloto vista exterior" loading="lazy" onerror="this.remove()"/>
-          </div>
-          <div class="gallery-caption">— Vista exterior</div>
-        </div>
-        <div class="gallery-item">
-          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Render lateral">
-            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Render lateral</div></div>
-            <img src="assets/proyectos/casa-piloto-03-render.jpg" alt="Casa Piloto render lateral" loading="lazy" onerror="this.remove()"/>
-          </div>
-          <div class="gallery-caption">— Render lateral</div>
-        </div>
-        <div class="gallery-item">
-          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Volumetría">
-            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Volumetría</div></div>
-            <img src="assets/proyectos/casa-piloto-04-render.jpg" alt="Casa Piloto volumetría" loading="lazy" onerror="this.remove()"/>
-          </div>
-          <div class="gallery-caption">— Volumetría</div>
-        </div>
-        <div class="gallery-item wide">
-          <div class="img-wrap" data-gallery="piloto" data-caption="Casa Piloto · Render contextual">
-            <div class="img-ph"><div class="ph-lines"><div class="ph-line"></div><div class="ph-line"></div><div class="ph-line"></div></div><div class="ph-label">Render contextual</div></div>
-            <img src="assets/proyectos/casa-piloto-05-render.jpg" alt="Casa Piloto render contextual" loading="lazy" onerror="this.remove()"/>
-          </div>
-          <div class="gallery-caption">— Render contextual</div>
-        </div>
-      </div>
+      </section>
+
       <div class="proyecto-cta">
         <div class="proyecto-cta-text">
-          <h3>¿Te interesa un proyecto <em>parecido?</em></h3>
-          <p>Escribinos por el canal que prefieras. Coordinamos una visita o llamada sin compromiso.</p>
+          <h3>¿Buscás una vivienda <em>clara y eficiente?</em></h3>
+          <p>Podemos adaptar este enfoque a tu terreno, programa y presupuesto.</p>
         </div>
         <div class="proyecto-cta-actions">
           <a class="btn-wapp" id="cta-wapp-p1"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
@@ -667,7 +722,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </article>
 </div>
 
 <!-- PAGE: CASA COSTANERA -->
@@ -805,58 +860,88 @@
 
 <!-- PAGE: CASA JUAN -->
 <div class="page" id="page-casa-juan">
-  <div class="proyecto-detail">
-    <div class="container">
-      <a class="proyecto-back" data-link="/proyectos">← Volver a proyectos</a>
-      <div style="max-width:900px;margin:0 auto">
-        <h1 style="font-family:var(--serif);font-size:clamp(2rem,4.2vw,3.5rem);font-weight:500;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.8rem">Casa <span style="color:var(--red);font-style:italic">Juan</span></h1>
-        <p style="font-size:1.05rem;line-height:1.65;color:var(--ink-soft);margin-bottom:2.5rem;max-width:680px">Construcción de una nueva barbacoa de 35 m² sobre un predio familiar. Sistema constructivo tradicional con platea de hormigón armado, muros de mampostería con aislación térmica incorporada, cubierta de madera con machimbrado visto y chapa sinusoidal exterior. Proyecto completo con cómputos, sanitaria y eléctrica.</p>
-        <div class="proyecto-data" style="max-width:680px;margin-bottom:3rem">
-          <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2026</div></div>
-          <div class="data-item"><div class="data-item-label">Superficie</div><div class="data-item-value">35 m²</div></div>
-          <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Obra nueva · Barbacoa</div></div>
-          <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">En obra</div></div>
-        </div>
+  <article class="process-project">
+    <a class="proyecto-back" data-link="/proyectos">← Volver al archivo</a>
+    <header class="process-project-head">
+      <div>
+        <div class="process-project-kicker">Obra nueva · En obra</div>
+        <h1>Casa <em>Juan</em></h1>
+      </div>
+      <p class="process-project-lead">Una pieza independiente para el encuentro familiar, construida con materiales directos y una lógica durable.</p>
+    </header>
 
-        <div class="proyecto-soon">
-          <h3>Proyecto <em>en obra</em></h3>
-          <p>Las imágenes finales se publican cuando la obra avance. Mientras tanto, si querés ver el proyecto técnico o conversar sobre algo similar, escribinos.</p>
-          <div class="proyecto-cta-actions" style="justify-content:center;display:flex">
-            <a class="btn-wapp" id="cta-wapp-p3"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
-            <a class="hero-cta ghost" data-link="/contacto">Formulario</a>
-          </div>
-        </div>
+    <div class="project-editorial-meta" role="group" aria-label="Ficha técnica del proyecto Casa Juan">
+      <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2026</div></div>
+      <div class="data-item"><div class="data-item-label">Superficie</div><div class="data-item-value">35 m²</div></div>
+      <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Barbacoa</div></div>
+      <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">En obra</div></div>
+    </div>
+
+    <section class="process-project-body" aria-label="Memoria descriptiva de Casa Juan">
+      <div>
+        <div class="project-section-label">Memoria descriptiva</div>
+        <div class="process-status">Construcción en curso</div>
+      </div>
+      <div>
+        <p>Casa Juan incorpora una nueva barbacoa de 35 m² dentro de un predio familiar. El volumen se plantea como una construcción autónoma, capaz de alojar reuniones y actividades cotidianas sin interferir con la vivienda principal.</p>
+        <p>El sistema combina platea de hormigón armado, muros de mampostería con aislación térmica y una cubierta liviana de madera, con machimbrado visto hacia el interior y chapa sinusoidal al exterior. El alcance integra proyecto, cómputos y coordinación de las instalaciones sanitaria y eléctrica.</p>
+      </div>
+    </section>
+
+    <div class="proyecto-cta">
+      <div class="proyecto-cta-text">
+        <h3>¿Querés sumar un espacio <em>para encontrarse?</em></h3>
+        <p>Diseñamos la propuesta y coordinamos cada etapa técnica hasta llevarla a obra.</p>
+      </div>
+      <div class="proyecto-cta-actions">
+        <a class="btn-wapp" id="cta-wapp-p3"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
+        <a class="hero-cta ghost" data-link="/contacto">Formulario</a>
       </div>
     </div>
-  </div>
+  </article>
 </div>
 
 <!-- PAGE: CASA R -->
 <div class="page" id="page-casa-r">
-  <div class="proyecto-detail">
-    <div class="container">
-      <a class="proyecto-back" data-link="/proyectos">← Volver a proyectos</a>
-      <div style="max-width:900px;margin:0 auto">
-        <h1 style="font-family:var(--serif);font-size:clamp(2rem,4.2vw,3.5rem);font-weight:500;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.8rem">Casa <span style="color:var(--red);font-style:italic">R</span></h1>
-        <p style="font-size:1.05rem;line-height:1.65;color:var(--ink-soft);margin-bottom:2.5rem;max-width:680px">Reforma de baño y cocina en una vivienda existente. El encargo pedía reorganizar los espacios de uso diario, mejorar la llegada de luz natural y actualizar terminaciones, manteniendo la estructura original de la casa.</p>
-        <div class="proyecto-data" style="max-width:680px;margin-bottom:3rem">
-          <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2026</div></div>
-          <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">En desarrollo</div></div>
-          <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Reforma interior</div></div>
-          <div class="data-item"><div class="data-item-label">Cliente</div><div class="data-item-value">Privado</div></div>
-        </div>
+  <article class="process-project">
+    <a class="proyecto-back" data-link="/proyectos">← Volver al archivo</a>
+    <header class="process-project-head">
+      <div>
+        <div class="process-project-kicker">Reforma interior · En desarrollo</div>
+        <h1>Casa <em>R</em></h1>
+      </div>
+      <p class="process-project-lead">Una intervención precisa sobre cocina y baño para mejorar luz, uso y continuidad cotidiana.</p>
+    </header>
 
-        <div class="proyecto-soon">
-          <h3>Proyecto <em>en desarrollo</em></h3>
-          <p>Estamos en la etapa de propuesta. Cuando los renders y planos estén listos los publicamos acá. Si querés ver más sobre cómo trabajamos reformas, escribinos.</p>
-          <div class="proyecto-cta-actions" style="justify-content:center;display:flex">
-            <a class="btn-wapp" id="cta-wapp-p4"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
-            <a class="hero-cta ghost" data-link="/contacto">Formulario</a>
-          </div>
-        </div>
+    <div class="project-editorial-meta" role="group" aria-label="Ficha técnica del proyecto Casa R">
+      <div class="data-item"><div class="data-item-label">Año</div><div class="data-item-value">2026</div></div>
+      <div class="data-item"><div class="data-item-label">Tipo</div><div class="data-item-value">Reforma interior</div></div>
+      <div class="data-item"><div class="data-item-label">Cliente</div><div class="data-item-value">Privado</div></div>
+      <div class="data-item"><div class="data-item-label">Estado</div><div class="data-item-value">En desarrollo</div></div>
+    </div>
+
+    <section class="process-project-body" aria-label="Memoria descriptiva de Casa R">
+      <div>
+        <div class="project-section-label">Memoria descriptiva</div>
+        <div class="process-status">Etapa de propuesta</div>
+      </div>
+      <div>
+        <p>Casa R trabaja sobre dos espacios esenciales de una vivienda existente: la cocina y el baño. La intervención reorganiza sus usos, mejora la entrada de luz natural y actualiza las terminaciones sin alterar la estructura principal de la casa.</p>
+        <p>El proyecto busca obtener el mayor cambio posible mediante operaciones contenidas: circulaciones más claras, mejor capacidad de guardado y una paleta material coherente entre ambos ambientes. La documentación visual se incorporará cuando finalice la etapa de propuesta.</p>
+      </div>
+    </section>
+
+    <div class="proyecto-cta">
+      <div class="proyecto-cta-text">
+        <h3>¿Tu casa necesita <em>una nueva lógica?</em></h3>
+        <p>Estudiamos lo existente y proponemos una reforma ajustada a tu forma de habitar.</p>
+      </div>
+      <div class="proyecto-cta-actions">
+        <a class="btn-wapp" id="cta-wapp-p4"><svg><use href="#i-wapp"/></svg>WhatsApp</a>
+        <a class="hero-cta ghost" data-link="/contacto">Formulario</a>
       </div>
     </div>
-  </div>
+  </article>
 </div>
 
 <!-- PAGE: SERVICIOS -->

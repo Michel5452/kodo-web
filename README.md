@@ -12,6 +12,7 @@ Sitio estático del estudio KODO. HTML/CSS/JS puros, sin build, sin dependencias
 │   └── proyectos/          ← imágenes de proyectos
 │       ├── casa-piloto-01-render.jpg ... 05
 │       ├── casa-costanera-01-render.jpg ... 05 (archivo anterior)
+│       ├── casa-piloto/     ← renders hiperrealistas optimizados + planta
 │       └── casa-costanera/ ← ficha editorial, planta y registro previo
 ├── .nojekyll               ← desactiva Jekyll en GitHub Pages
 ├── .gitignore
@@ -60,7 +61,7 @@ const KODO = {
    - el texto de `.gallery-caption` (el subtítulo bajo la imagen)
 3. Si una imagen no carga, el contenedor muestra un placeholder limpio (no se rompe).
 
-**Recomendación:** subí imágenes JPG de máximo 1920px de ancho y ~85% de calidad. Las que están en este zip ya están optimizadas (~200–500KB cada una).
+**Recomendación:** subí imágenes WebP o JPG de máximo 1920px de ancho y ~85% de calidad. Conservá los archivos fuente fuera de la web y usá acá versiones optimizadas (~100–500KB cada una).
 
 ## Lightbox / zoom
 
